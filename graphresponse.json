@@ -1,0 +1,1400 @@
+{
+    "data": {
+        "nodes": [
+            {
+                "id": "gid://shopify/ProductVariant/44315126825155",
+                "title": "4-Day",
+                "sku": "CCG4",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CCG4_300x.jpg?v=1744997354",
+                    "altText": null
+                },
+                "quantityAvailable": 129,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8140303564995",
+                    "title": "History/Bible/Literature C Instructor's Guide",
+                    "handle": "sonlight-c-instructors-guide",
+                    "productType": "INSTRUCTOR",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35968592904387",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Instructor's Guide"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35968592937155",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Hassle-Free Homeschooling! The History/Bible/Literature C History / Bible / Literature Instructor's Guide shows you how."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44341280178371",
+                "title": "4-Day",
+                "sku": "4RG4",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4RG4_300x.jpg?v=1744997353",
+                    "altText": null
+                },
+                "quantityAvailable": 4,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8151461298371",
+                    "title": "Grade 4 Readers Schedule/Study Guide",
+                    "handle": "grade-4-readers-schedule-study-guide",
+                    "productType": "INSTRUCTOR",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/36106010722499",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Instructor's Guide"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/36106010755267",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Includes the daily schedule and Study Guide for Grade 4 Readers, 5-Day."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006466243",
+                "title": "Default Title",
+                "sku": "4R40",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R40_300x.jpg?v=1744997517",
+                    "altText": null
+                },
+                "quantityAvailable": 247,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717186243",
+                    "title": "Henry and Ribsy",
+                    "handle": "henry-and-ribsy",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411750650051",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411750813891",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Henry and Ribsy by Beverly Cleary details the beloved adventures of an all-American average boy and his dog. This book series started in 1950."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006531779",
+                "title": "Default Title",
+                "sku": "4R43",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R43_300x.jpg?v=1744997526",
+                    "altText": null
+                },
+                "quantityAvailable": 614,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717251779",
+                    "title": "The Children of Noisy Village",
+                    "handle": "the-children-of-noisy-village",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411749404867",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411749568707",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Journey through a year of traditions and fun with this timeless story of six children on country farms in Sweden."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239763996867",
+                "title": "Default Title",
+                "sku": "4R44",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R44_300x.jpg?v=1744997520",
+                    "altText": null
+                },
+                "quantityAvailable": 174,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8119344824515",
+                    "title": "Encyclopedia Brown",
+                    "handle": "encyclopedia-brown",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35417119948995",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35417120112835",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A thoroughly likable boy detective uses his encyclopedic knowledge and unerring deductive abilities to solve ten mysteries."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006597315",
+                "title": "Default Title",
+                "sku": "4R45",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R45_300x.jpg?v=1744997518",
+                    "altText": null
+                },
+                "quantityAvailable": 161,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717317315",
+                    "title": "Misty of Chincoteague",
+                    "handle": "misty-of-chincoteague",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411752517827",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411752681667",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Fictional account of a true story about an \"uncatchable\" mare named Phantom and her colt, Misty. Engaging."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006630083",
+                "title": "Default Title",
+                "sku": "4R47",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R47_300x.jpg?v=1744997519",
+                    "altText": null
+                },
+                "quantityAvailable": 134,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717350083",
+                    "title": "More Stories from Grandma's Attic",
+                    "handle": "more-stories-from-grandmas-attic",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411755073731",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411755237571",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "16 inspiring stories of a childhood in midwest North America 80 years ago."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006728387",
+                "title": "Default Title",
+                "sku": "4R49",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R49_300x.jpg?v=1744997525",
+                    "altText": null
+                },
+                "quantityAvailable": 490,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717448387",
+                    "title": "Emily's Runaway Imagination",
+                    "handle": "emilys-runaway-imagination",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411756286147",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411756449987",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A charming story about a lovable girl in small-town Oregon in the mid-1920s whose creative ideas place her in humorous and sometimes mildly embarrassing situations."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006662851",
+                "title": "Default Title",
+                "sku": "4R51",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R51_300x.jpg?v=1744997518",
+                    "altText": null
+                },
+                "quantityAvailable": 155,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717382851",
+                    "title": "Mustang, Wild Spirit of the West",
+                    "handle": "mustang-wild-spirit-of-the-west",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411757531331",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411757695171",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "True story of \"Wild Horse Annie\" who fought to protect the wild mustangs of the western United States from ruthless slaughter and extinction."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006695619",
+                "title": "Default Title",
+                "sku": "4R53",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R53_300x.jpg?v=1744997522",
+                    "altText": null
+                },
+                "quantityAvailable": 549,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717415619",
+                    "title": "The Whipping Boy",
+                    "handle": "the-whipping-boy",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411756908739",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411757072579",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "The Whipping Boy by Sid Fleischman focuses upon a prince who has to learn the hard way what makes for true character."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006761155",
+                "title": "Default Title",
+                "sku": "4R54",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R54_300x.jpg?v=1744997521",
+                    "altText": null
+                },
+                "quantityAvailable": 187,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717481155",
+                    "title": "Socks",
+                    "handle": "socks",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411758776515",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411758940355",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Socks, a beloved, pampered cat is the center of his human family's universe&mdash;until he is displaced by a new baby. Can he ever regain his position? Rollicking fun."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006826691",
+                "title": "Default Title",
+                "sku": "4R55",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R55_300x.jpg?v=1744997515",
+                    "altText": null
+                },
+                "quantityAvailable": 250,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717513923",
+                    "title": "Lumber Camp Library",
+                    "handle": "lumber-camp-library",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411758153923",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411758317763",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "When Ruby's beloved father dies in a logging accident, she must leave school&mdash;and her dream of teaching&mdash;to care for her 10 siblings."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006924995",
+                "title": "Default Title",
+                "sku": "4R56",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R56_300x.jpg?v=1744997527",
+                    "altText": null
+                },
+                "quantityAvailable": 1002,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717612227",
+                    "title": "A Llama in the Family",
+                    "handle": "a-llama-in-the-family",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411762839747",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411763003587",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Adam has had his heart set on getting a mountain bike. When his mother buys a llama to start a Vermont Trekking company instead, Adam discovers that his dreams may be too small. Heartwarming, humorous, and positive. "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006859459",
+                "title": "Default Title",
+                "sku": "4R57",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/4r57_300x.png?v=1744997516",
+                    "altText": null
+                },
+                "quantityAvailable": 114,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717546691",
+                    "title": "The Toothpaste Millionaire",
+                    "handle": "the-toothpaste-millionaire",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411763462339",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411763626179",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A resourceful and scrupulously honest 12-year old makes a million dollars by selling toothpaste at no more than 15 cents a tube."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239764029635",
+                "title": "Default Title",
+                "sku": "4R58",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R58_300x.jpg?v=1744997513",
+                    "altText": null
+                },
+                "quantityAvailable": 440,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8119344857283",
+                    "title": "McBroom's Wonderful One-Acre Farm",
+                    "handle": "mcbrooms-wonderful-one-acre-farm",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35417118408899",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35417118572739",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Three tall tales by a Newbery award-winning author. Will tickle your child's funny bone."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006892227",
+                "title": "Default Title",
+                "sku": "4R59",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R59_300x.jpg?v=1744997532",
+                    "altText": null
+                },
+                "quantityAvailable": 220,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717579459",
+                    "title": "Frindle",
+                    "handle": "frindle",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411760316611",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411760480451",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Fifth grader Nick Allen decides to test his language arts teacher's commitment to dictionaries by creating a new word&mdash;frindle. The ensuing battle of wills provides a delightful backdrop for a young person's introduction to the fascinating world of words."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239007056067",
+                "title": "Default Title",
+                "sku": "4R63",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R63_300x.jpg?v=1744997516",
+                    "altText": null
+                },
+                "quantityAvailable": 146,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717743299",
+                    "title": "Ralph S. Mouse",
+                    "handle": "ralph-s-mouse",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411721748675",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411721912515",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Fed up with life at the Mountain View Inn, Ralph persuades his friend Ryan to take him to school."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239764062403",
+                "title": "Default Title",
+                "sku": "4R65",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R65_300x.jpg?v=1744997519",
+                    "altText": null
+                },
+                "quantityAvailable": 2462,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8119344890051",
+                    "title": "Marco Polo",
+                    "handle": "marco-polo",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35417122275523",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35417122439363",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Illustrations and readable text provide a fascinating introduction to one of the world's great explorers, a man who befriended one of history's great leaders: Kublai Khan."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239006990531",
+                "title": "Default Title",
+                "sku": "4R67",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-4R67_300x.jpg?v=1744997531",
+                    "altText": null
+                },
+                "quantityAvailable": 154,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8118717677763",
+                    "title": "Escape from Mr. Lemoncello's Library",
+                    "handle": "escape-from-mr-lemoncellos-library",
+                    "productType": "READER",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35411796361411",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Readers"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35411796525251",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Like Roald Dahl's <em>Charlie and the Chocolate Factory</em>, this fast-paced novel features an eccentric billionaire who welcomes a group of children into a public library filled with book-related clues puzzles to find the hidden escape route if they want to leave the library and win Mr. Lemoncello's most fabulous prize.        Escape from Mr. Lemoncello's Library is more than a rib-tickling novel full of humor and suspense. It's a game in itself, in which readers can have fun solving clues and answering riddles while learning how to navigate the Dewey Decimal system. There is even one puzzle hidden for you to find."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333448899",
+                "title": "Default Title",
+                "sku": "CA02",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA02_300x.jpg?v=1744997609",
+                    "altText": null
+                },
+                "quantityAvailable": 347,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548951747",
+                    "title": "The Twenty-One Balloons",
+                    "handle": "the-twenty-one-balloons",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365123129539",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391462473923",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "An inventive scientist lands on Krakatoa only days before the volcano blows."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333547203",
+                "title": "Default Title",
+                "sku": "CA03",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA03_300x.jpg?v=1744997609",
+                    "altText": null
+                },
+                "quantityAvailable": 284,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549017283",
+                    "title": "The Door in the Wall",
+                    "handle": "the-door-in-the-wall",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365123752131",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391463325891",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Newbery Medal-winning story of the crippled son of a medieval lord."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333645507",
+                "title": "Default Title",
+                "sku": "CA08",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA08_300x.jpg?v=1744997611",
+                    "altText": null
+                },
+                "quantityAvailable": 407,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549082819",
+                    "title": "The Little Riders",
+                    "handle": "the-little-riders",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365124374723",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391464177859",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Johanna and her grandparents, with the help of a friendly German soldier, save the figurines of their town's church clock."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333121219",
+                "title": "Default Title",
+                "sku": "CA10",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/ca10_300x.jpg?v=1744997606",
+                    "altText": null
+                },
+                "quantityAvailable": 286,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548689603",
+                    "title": "The Aesop for Children",
+                    "handle": "the-aesop-for-children",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365117821123",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391457394883",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Handsome, full-color, oversize reprint of the 1919 classic \"The Aesop for Children.\""
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217332924611",
+                "title": "Default Title",
+                "sku": "CA11",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA11_300x.jpg?v=1744997611",
+                    "altText": null
+                },
+                "quantityAvailable": 1591,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548558531",
+                    "title": "Red Sails to Capri",
+                    "handle": "red-sails-to-capri",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365115232451",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391455461571",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "The mountainous island of Capri has a mystery and it takes the innkeeper's son, Michele, and three foreigners to get to the bottom of it."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217332957379",
+                "title": "Default Title",
+                "sku": "CA12",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA12_300x.jpg?v=1744997611",
+                    "altText": null
+                },
+                "quantityAvailable": 2460,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548591299",
+                    "title": "White Stallion of Lipizza",
+                    "handle": "white-stallion-of-lipizza",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365115953347",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391456116931",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Award-winning author tells the story of a young boy and his rigorous apprenticeship and training at Vienna's Spanish Court Riding school, home of the famous Lipizzan stallions."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44239766290627",
+                "title": "Default Title",
+                "sku": "CA14",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA14_300x.jpg?v=1744997616",
+                    "altText": null
+                },
+                "quantityAvailable": 295,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8119347118275",
+                    "title": "The Cricket in Times Square",
+                    "handle": "the-cricket-in-times-square",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35417204424899",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35417204588739",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Chester, a cricket from Connecticut, moves into the Bellinis' Newspaper Stand in New York City."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333153987",
+                "title": "Default Title",
+                "sku": "CA17",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA17_300x.jpg?v=1744997607",
+                    "altText": null
+                },
+                "quantityAvailable": 0,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548722371",
+                    "title": "Tales of Robin Hood",
+                    "handle": "tales-of-robin-hood",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365118574787",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391458083011",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Eight action-packed tales recount the most exciting exploits of Robin Hood and his band of followers."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333416131",
+                "title": "Default Title",
+                "sku": "CA18",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA18_300x.jpg?v=1744997622",
+                    "altText": null
+                },
+                "quantityAvailable": 328,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548918979",
+                    "title": "The School Story",
+                    "handle": "the-school-story",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365122441411",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391461621955",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "12-year-old Natalie Nelson writes a novel that her best friend, Zoe, thinks is good enough to be published. Natalie isn't so sure. "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333383363",
+                "title": "Default Title",
+                "sku": "CA22",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA22_300x.jpg?v=1744997610",
+                    "altText": null
+                },
+                "quantityAvailable": 317,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548886211",
+                    "title": "Captain Nobody",
+                    "handle": "captain-nobody",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365121753283",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391460933827",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Newt is just your average overlooked kid. But when he dons a makeshift superhero outfit for Halloween, he discovers what confidence feels like. "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217332990147",
+                "title": "Default Title",
+                "sku": "CA24",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA24_300x.jpg?v=1744997613",
+                    "altText": null
+                },
+                "quantityAvailable": 337,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113548624067",
+                    "title": "Sticks Across the Chimney",
+                    "handle": "sticks-across-the-chimney",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365116707011",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391456805059",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Richly layered with mystery and intrigue, Sticks Across the Chimney tells a captivating story of two Danish children and their widowed mother struggling to survive on a dilapidated farm."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333874883",
+                "title": "Default Title",
+                "sku": "CA26",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA26_300x.jpg?v=1744997609",
+                    "altText": null
+                },
+                "quantityAvailable": 234,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549213891",
+                    "title": "The Penderwicks",
+                    "handle": "the-penderwicks",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365126897859",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391467585731",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A deliciously nostalgic and witty story from National Book Award winner and New York Times bestseller Jeanne Birdsall."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333809347",
+                "title": "Default Title",
+                "sku": "CA28",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA28_300x.jpg?v=1744997611",
+                    "altText": null
+                },
+                "quantityAvailable": 251,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549148355",
+                    "title": "About Average",
+                    "handle": "about-average",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365125652675",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391466045635",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Jordan Johnston is average. Not short, not tall. Not plump, not slim. Not gifted, not flunking out. Even her shoe size is average. Feeling doomed to a life of wallowing in the soggy middle, she makes a goal: By the end of the year, she'll discover her great talent. "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217334563011",
+                "title": "Default Title",
+                "sku": "CA30",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA30_300x.jpg?v=1744997624",
+                    "altText": null
+                },
+                "quantityAvailable": 4500,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549410499",
+                    "title": "104 Poems of Whimsy and Wisdom",
+                    "handle": "104-poems-of-whimsy-and-wisdom",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365129748675",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391470338243",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "This delightful collection features outstanding poems in the English language: fun, thoughtful, interesting, unexpected, delightful, inspiring. "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333842115",
+                "title": "Default Title",
+                "sku": "CH04",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CH04_300x.jpg?v=1744997613",
+                    "altText": null
+                },
+                "quantityAvailable": 600,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549181123",
+                    "title": "Window on the World",
+                    "handle": "window-on-the-world",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365126275267",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391466733763",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A wonderful introduction to 92 largely unevangelized countries and peoples of the world. From Afghanistan to the Zulus, and beyond."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44291505750211",
+                "title": "Default Title",
+                "sku": "CH06",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CH06_300x.jpg?v=1744997623",
+                    "altText": null
+                },
+                "quantityAvailable": 212,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8137523101891",
+                    "title": "Audio Memory Geography Songs CD Kit",
+                    "handle": "audio-memory-geography-songs-cd-kit",
+                    "productType": "GEOGRAPHY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35547628667075",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Geography"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35547628699843",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "34 songs teach the names and locations of the continents, oceans, planets, 225 countries, and the states and provinces of Canada and the U.S."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333317827",
+                "title": "Default Title",
+                "sku": "CH12",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/CH12-649x827-0925_300x.jpg?v=1758308135",
+                    "altText": "Timeline Figures C"
+                },
+                "quantityAvailable": 675,
+                "availableDate": {
+                    "value": "2024-03-15"
+                },
+                "product": {
+                    "id": "gid://shopify/Product/8113548820675",
+                    "title": "Timeline Figures C",
+                    "handle": "timeline-figures-c",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365120049347",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391459393731",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "80 Timeline Figures for Sonlight C on self-adhesive heavy card stock. Just cut them out, color and stick them in your Timeline Book."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333776579",
+                "title": "Default Title",
+                "sku": "CH13",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CH13_300x.jpg?v=1744997630",
+                    "altText": null
+                },
+                "quantityAvailable": 37,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549115587",
+                    "title": "Gladys Aylward",
+                    "handle": "gladys-aylward",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365125062851",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391464833219",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A story built around the work of Gladys Aylward, an uneducated British housemaid who went to China via Russia in the midst of the Soviet-Chinese war in the early 20th century."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217333907651",
+                "title": "Default Title",
+                "sku": "CH17",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CH17_300x.jpg?v=1744997613",
+                    "altText": null
+                },
+                "quantityAvailable": 216,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549246659",
+                    "title": "With Two Hands",
+                    "handle": "with-two-hands",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365127553219",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391468175555",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Eighteen glorious chapters of God at work in Ethiopia. Witch doctors transformed; the single person who could translate ends up in just the right place; two girls who pray daily for transformation for many years... and transformation happens. Marvelous."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217336299715",
+                "title": "Default Title",
+                "sku": "CA31",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CA31_300x.jpg?v=1744997611",
+                    "altText": null
+                },
+                "quantityAvailable": 231,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113550098627",
+                    "title": "Tiger Boy",
+                    "handle": "tiger-boy",
+                    "productType": "READ ALOUD",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365140332739",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Read-Alouds"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391481053379",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "When a tiger cub escapes from a nature reserve near Neel's island village, the rangers and villagers hurry to find her before the cub's anxious mother follows suit and endangers them all. "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217334464707",
+                "title": "Default Title",
+                "sku": "DB02",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-DB02_300x.jpg?v=1744997631",
+                    "altText": null
+                },
+                "quantityAvailable": 240,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113549312195",
+                    "title": "The Discoverer's Bible for Early Readers",
+                    "handle": "the-discoverers-bible-for-early-readers",
+                    "productType": "BIBLE",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365128405187",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Bible"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391468896451",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "<p>Provides the full text (Genesis to Revelation) of the New International Reader's Version<sup>&reg;</sup> of the Bible.</p>"
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44123342176451",
+                "title": "Default Title",
+                "sku": "RR120",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/RR120_300x.jpg?v=1740514050",
+                    "altText": "The Timeline Book"
+                },
+                "quantityAvailable": 7055,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8090030178499",
+                    "title": "The Timeline Book",
+                    "handle": "the-timeline-book",
+                    "productType": "RESOURCES",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35350698950851",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Resources"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391499075779",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "A blank timeline from 5,000 B.C. to the Present! Pre-printed timeline in a spiral-bound book&mdash;for use throughout your homeschooling adventure. Required Resource for Sonlight K-J and useful in 100 through 500."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44209679761603",
+                "title": "Default Title",
+                "sku": "B050",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/b050_300x.png?v=1744997601",
+                    "altText": null
+                },
+                "quantityAvailable": 4510,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8111616295107",
+                    "title": "3\" Binder with Tabs",
+                    "handle": "3inch-binder-with-tabs",
+                    "productType": "RESOURCES",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35350702162115",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Resources"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391500517571",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Organize all your homeschool papers in one sturdy and convenient binder. With tabs that match your Sonlight History, Language Arts, and Science Instructor's Guides, you'll always know where to find each week's schedule, notes and study guides."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217354059971",
+                "title": "Default Title",
+                "sku": "CH15",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CH15_300x.jpg?v=1744997614",
+                    "altText": null
+                },
+                "quantityAvailable": 210,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113558356163",
+                    "title": "A Child's History of the World",
+                    "handle": "a-childs-history-of-the-world",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365422104771",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391501697219",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Required Resource for History / Bible / Literature C. (Included in B, and W. If you purchase History / Bible / Literature C and have not used B, or W, you will need to purchase this book separately.)"
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217353699523",
+                "title": "Default Title",
+                "sku": "CH02",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-CH02_300x.jpg?v=1744997612",
+                    "altText": null
+                },
+                "quantityAvailable": 1626,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113558290627",
+                    "title": "The Usborne Book of World History",
+                    "handle": "the-usborne-book-of-world-history",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365421383875",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391501041859",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Required Resource for History / Bible / Literature C. (Included in B and B+C. If you purchase History / Bible / Literature C and have not used B or B+C, you will need to purchase this book separately.) The history of the world to 1914."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44217354158275",
+                "title": "Default Title",
+                "sku": "BH01",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/bh01_300x.png?v=1744997604",
+                    "altText": null
+                },
+                "quantityAvailable": 463,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8113558421699",
+                    "title": "The Usborne Time Traveler",
+                    "handle": "the-usborne-time-traveler",
+                    "productType": "HISTORY",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35365423153347",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "History"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35391503990979",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Required Resource for History / Bible / Literature C. (Included in B and B+C. If you purchase History / Bible / Literature C and have not used B or B+C, you will need to purchase this book separately.) "
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44317230661827",
+                "title": "Default Title",
+                "sku": "MAP1",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/map1_300x.png?v=1744997750",
+                    "altText": null
+                },
+                "quantityAvailable": 10553,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8143316517059",
+                    "title": "Markable Map Only",
+                    "handle": "markable-map-only",
+                    "productType": "RESOURCES",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35990430056643",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Resources"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35990430089411",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "23\" x 34\" world and USA outline maps printed back-to-back and laminated for you to mark with overhead projector pens or grease pencils."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44317230694595",
+                "title": "Default Title",
+                "sku": "MAP2",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/S-MAP2_300x.jpg?v=1744997757",
+                    "altText": null
+                },
+                "quantityAvailable": 334,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8143316549827",
+                    "title": "Markers Only",
+                    "handle": "markers-only",
+                    "productType": "RESOURCES",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35990409445571",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Resources"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35990409478339",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "Four-color set of Vis-a-Vis wet-erase, fine point markers. Blue, red, green, and black. For use with the Markable Map."
+                    }
+                }
+            },
+            {
+                "id": "gid://shopify/ProductVariant/44291505717443",
+                "title": "Default Title",
+                "sku": "CB2E",
+                "image": {
+                    "url": "https://cdn.shopify.com/s/files/1/0674/8874/3619/files/CB2E_300x.jpg?v=1744997344",
+                    "altText": null
+                },
+                "quantityAvailable": 46,
+                "availableDate": null,
+                "product": {
+                    "id": "gid://shopify/Product/8137523069123",
+                    "title": "Sing the Word: God Our Provider",
+                    "handle": "sing-the-word-god-our-provider",
+                    "productType": "BIBLE",
+                    "groupMetafield": {
+                        "id": "gid://shopify/Metafield/35978268082371",
+                        "namespace": "custom",
+                        "key": "included_item_group",
+                        "value": "Bible"
+                    },
+                    "descriptionMetafield": {
+                        "id": "gid://shopify/Metafield/35547509096643",
+                        "namespace": "custom",
+                        "key": "short_description",
+                        "value": "This audio downlaod includes the Scripture verses in the Level C Bible Memory program set to diverse musical styles. Digital Format – stored in your account for easy access."
+                    }
+                }
+            }
+        ]
+    }
+}

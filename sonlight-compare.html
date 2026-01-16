@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonlight Book Price Comparison</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f1f5f9;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-left h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .header-subtitle {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* Import Screen */
+        .import-screen {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .import-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .import-card h2 {
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        .import-card p {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .import-card ol {
+            margin: 20px 0;
+            padding-left: 20px;
+            color: #475569;
+        }
+
+        .import-card li {
+            margin-bottom: 10px;
+        }
+
+        .import-card code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .json-input {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85em;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .json-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .curriculum-name-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .curriculum-name-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .import-btn {
+            width: 100%;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .import-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .import-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .import-error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .import-progress {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #22c55e;
+            transition: width 0.3s;
+        }
+
+        /* Saved Curricula */
+        .saved-curricula {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .saved-curricula h3 {
+            margin-bottom: 15px;
+            color: #475569;
+        }
+
+        .curriculum-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .curriculum-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .curriculum-item-info {
+            flex: 1;
+        }
+
+        .curriculum-item-name {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .curriculum-item-meta {
+            font-size: 0.8em;
+            color: #64748b;
+        }
+
+        .curriculum-item-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .curriculum-item-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .curriculum-item-btn.load {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .curriculum-item-btn.load:hover {
+            background: #bfdbfe;
+        }
+
+        .curriculum-item-btn.delete {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .curriculum-item-btn.delete:hover {
+            background: #fecaca;
+        }
+
+        /* Summary Bar */
+        .summary-bar {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 76px;
+            z-index: 99;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-item .label {
+            font-size: 0.75em;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-item .value {
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        .summary-item .value.sonlight { color: #dc2626; }
+        .summary-item .value.hpb { color: #2563eb; }
+        .summary-item .value.savings { color: #16a34a; }
+        .summary-item .value.progress { color: #7c3aed; }
+
+        /* Filters */
+        .filters {
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .filter-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .filter-btn .count {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+            font-size: 0.85em;
+        }
+
+        .filter-btn.active .count {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Main content */
+        main {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Book Grid */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        /* Book Card */
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+        .book-card.has-savings {
+            border: 2px solid #22c55e;
+        }
+
+        .book-card-inner {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .book-image-container {
+            flex-shrink: 0;
+            width: 100px;
+        }
+
+        .book-image {
+            width: 100px;
+            height: 130px;
+            object-fit: contain;
+            background: #f8fafc;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .book-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .book-title {
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 4px;
+            color: #1e293b;
+        }
+
+        .book-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .book-title a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .book-sku {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-family: monospace;
+        }
+
+        .book-category {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+        }
+
+        .sonlight-price {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        /* Search Links */
+        .search-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .search-link {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .search-link.hpb {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .search-link.hpb:hover {
+            background: #fde68a;
+        }
+
+        .search-link.thriftbooks {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .search-link.thriftbooks:hover {
+            background: #a7f3d0;
+        }
+
+        /* Price Input Section */
+        .price-inputs {
+            background: #f8fafc;
+            padding: 12px 15px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .price-input-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .price-input-group label {
+            font-size: 0.8em;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .price-input {
+            width: 80px;
+            padding: 6px 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9em;
+            text-align: right;
+        }
+
+        .price-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .price-input.hpb-input {
+            background: #fffbeb;
+        }
+
+        .price-input.thrift-input {
+            background: #ecfdf5;
+        }
+
+        /* Savings display */
+        .savings-display {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .savings-display .label {
+            font-size: 0.7em;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .savings-display .amount {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .savings-display .amount.positive { color: #16a34a; }
+        .savings-display .amount.negative { color: #dc2626; }
+        .savings-display .amount.neutral { color: #64748b; }
+
+        /* URL inputs section */
+        .url-section {
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .url-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .url-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .url-row label {
+            font-size: 0.75em;
+            color: #64748b;
+            font-weight: 600;
+            width: 50px;
+            flex-shrink: 0;
+        }
+
+        .url-input {
+            flex: 1;
+            padding: 5px 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.8em;
+            min-width: 0;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .url-input.hpb-url {
+            background: #fffbeb;
+        }
+
+        .url-input.thrift-url {
+            background: #ecfdf5;
+        }
+
+        .url-input:disabled {
+            background: #e2e8f0;
+            color: #94a3b8;
+        }
+
+        .na-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75em;
+            color: #64748b;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .na-checkbox input {
+            cursor: pointer;
+        }
+
+        .visit-link {
+            padding: 4px 8px;
+            background: #e2e8f0;
+            color: #475569;
+            border-radius: 4px;
+            font-size: 0.7em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .visit-link:hover {
+            background: #cbd5e1;
+        }
+
+        .visit-link.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Not available styling */
+        .book-card.hpb-na .hpb-input,
+        .book-card.thrift-na .thrift-input {
+            background: #e2e8f0;
+            color: #94a3b8;
+        }
+
+        .na-badge {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-weight: 500;
+        }
+
+        /* Export button */
+        .export-section {
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .export-btn {
+            padding: 12px 30px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .export-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .clear-btn {
+            padding: 12px 30px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+
+        .clear-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Hidden when filtered */
+        .book-card.hidden {
+            display: none;
+        }
+
+        /* Hide sections based on app state */
+        .app-container.show-import .comparison-view { display: none; }
+        .app-container.show-import .import-screen { display: block; }
+        .app-container.show-comparison .comparison-view { display: block; }
+        .app-container.show-comparison .import-screen { display: none; }
+    </style>
+</head>
+<body>
+    <div class="app-container show-import" id="app">
+        <header>
+            <div class="header-left">
+                <h1>Sonlight Book Price Comparison</h1>
+                <div class="header-subtitle" id="curriculumTitle">Load a curriculum to get started</div>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" onclick="showImportScreen()">Load Curriculum</button>
+            </div>
+        </header>
+
+        <!-- Import Screen -->
+        <div class="import-screen">
+            <div class="import-card">
+                <h2>Load Curriculum Data</h2>
+                <p>Paste the GraphQL JSON response from your browser's Network tab to load a curriculum.</p>
+
+                <ol>
+                    <li>Go to a Sonlight curriculum page (e.g., <code>sonlight.com/products/intro-to-world-history...</code>)</li>
+                    <li>Open browser DevTools (F12) → Network tab</li>
+                    <li>Refresh the page, then filter by "graphql"</li>
+                    <li>Click the request to <code>graphql.json</code>, go to Response tab</li>
+                    <li>Copy the entire JSON response and paste below</li>
+                </ol>
+
+                <input type="text" class="curriculum-name-input" id="curriculumName"
+                       placeholder="Curriculum name (e.g., 'Intro to World History Year 2')">
+
+                <div class="import-error" id="importError"></div>
+                <div class="import-progress" id="importProgress">
+                    <span id="progressText">Fetching prices...</span>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <textarea class="json-input" id="jsonInput" placeholder="Paste GraphQL JSON response here..."></textarea>
+
+                <button class="import-btn" id="importBtn" onclick="importCurriculum()">
+                    Import & Fetch Prices
+                </button>
+
+                <div class="saved-curricula" id="savedCurricula">
+                    <h3>Saved Curricula</h3>
+                    <div class="curriculum-list" id="curriculumList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison View -->
+        <div class="comparison-view">
+            <div class="summary-bar">
+                <div class="summary-item">
+                    <div class="label">Sonlight Total</div>
+                    <div class="value sonlight" id="totalSonlight">$0.00</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">Best Price Total</div>
+                    <div class="value hpb" id="totalHPB">$0.00</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">Potential Savings</div>
+                    <div class="value savings" id="totalSavings">$0.00</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">Progress</div>
+                    <div class="value progress" id="progress">0 / 0</div>
+                </div>
+            </div>
+
+            <div class="filters" id="filters"></div>
+
+            <main>
+                <div class="book-grid" id="bookGrid"></div>
+
+                <div class="export-section">
+                    <button class="export-btn" onclick="exportToCSV()">Export to CSV</button>
+                    <button class="clear-btn" onclick="clearAllPrices()">Clear All Prices</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // App State
+        let currentCurriculumId = null;
+        let bookData = [];
+        let savedPrices = {};
+
+        const CURRICULA_KEY = 'sonlight-curricula';
+        const PRICES_KEY = 'sonlight-prices';
+
+        // ==================== Storage Functions ====================
+
+        function loadCurricula() {
+            try {
+                return JSON.parse(localStorage.getItem(CURRICULA_KEY)) || {};
+            } catch {
+                return {};
+            }
+        }
+
+        function saveCurricula(curricula) {
+            localStorage.setItem(CURRICULA_KEY, JSON.stringify(curricula));
+        }
+
+        function loadPrices() {
+            try {
+                return JSON.parse(localStorage.getItem(PRICES_KEY)) || {};
+            } catch {
+                return {};
+            }
+        }
+
+        function savePrices(prices) {
+            localStorage.setItem(PRICES_KEY, JSON.stringify(prices));
+        }
+
+        function getCurrentPrices() {
+            if (!currentCurriculumId) return {};
+            const allPrices = loadPrices();
+            return allPrices[currentCurriculumId] || {};
+        }
+
+        function saveCurrentPrices(prices) {
+            const allPrices = loadPrices();
+            allPrices[currentCurriculumId] = prices;
+            savePrices(allPrices);
+        }
+
+        // ==================== Import Functions ====================
+
+        function parseGraphQLResponse(json) {
+            const nodes = json?.data?.nodes || [];
+            return nodes.map(node => {
+                const variantId = node.id?.replace('gid://shopify/ProductVariant/', '') || null;
+                return {
+                    variantId,
+                    sku: node.sku,
+                    title: node.product?.title,
+                    handle: node.product?.handle,
+                    productType: node.product?.productType,
+                    group: node.product?.groupMetafield?.value || 'Other',
+                    description: node.product?.descriptionMetafield?.value || '',
+                    imageUrl: node.image?.url || null,
+                    productUrl: node.product?.handle
+                        ? `https://www.sonlight.com/products/${node.product.handle}?variant=${variantId}`
+                        : null,
+                    price: null // Will be fetched
+                };
+            });
+        }
+
+        async function fetchProductPrice(handle) {
+            try {
+                const response = await fetch(`https://www.sonlight.com/products/${handle}.json`);
+                if (!response.ok) return null;
+                const data = await response.json();
+                return data.product?.variants?.[0]?.price || null;
+            } catch {
+                return null;
+            }
+        }
+
+        async function importCurriculum() {
+            const jsonInput = document.getElementById('jsonInput').value.trim();
+            const nameInput = document.getElementById('curriculumName').value.trim();
+            const errorEl = document.getElementById('importError');
+            const progressEl = document.getElementById('importProgress');
+            const progressText = document.getElementById('progressText');
+            const progressFill = document.getElementById('progressFill');
+            const importBtn = document.getElementById('importBtn');
+
+            errorEl.style.display = 'none';
+            progressEl.style.display = 'none';
+
+            if (!jsonInput) {
+                errorEl.textContent = 'Please paste the GraphQL JSON response.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (!nameInput) {
+                errorEl.textContent = 'Please enter a name for this curriculum.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            let parsed;
+            try {
+                parsed = JSON.parse(jsonInput);
+            } catch (e) {
+                errorEl.textContent = 'Invalid JSON. Please check your paste and try again.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            const items = parseGraphQLResponse(parsed);
+            if (items.length === 0) {
+                errorEl.textContent = 'No items found in the JSON. Make sure you copied the correct GraphQL response.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            // Show progress
+            progressEl.style.display = 'block';
+            importBtn.disabled = true;
+
+            // Fetch prices with progress
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                progressText.textContent = `Fetching prices... ${i + 1}/${items.length} - ${item.title?.substring(0, 30) || 'Unknown'}`;
+                progressFill.style.width = `${((i + 1) / items.length) * 100}%`;
+
+                if (item.handle) {
+                    item.price = await fetchProductPrice(item.handle);
+                }
+
+                // Small delay to be nice to the server
+                if (i < items.length - 1) {
+                    await new Promise(r => setTimeout(r, 150));
+                }
+            }
+
+            // Generate curriculum ID
+            const curriculumId = 'curriculum_' + Date.now();
+
+            // Save curriculum
+            const curricula = loadCurricula();
+            curricula[curriculumId] = {
+                id: curriculumId,
+                name: nameInput,
+                books: items,
+                createdAt: new Date().toISOString()
+            };
+            saveCurricula(curricula);
+
+            // Load the curriculum
+            loadCurriculumById(curriculumId);
+
+            // Reset form
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('curriculumName').value = '';
+            progressEl.style.display = 'none';
+            importBtn.disabled = false;
+        }
+
+        function loadCurriculumById(id) {
+            const curricula = loadCurricula();
+            const curriculum = curricula[id];
+
+            if (!curriculum) return;
+
+            currentCurriculumId = id;
+            bookData = curriculum.books;
+            savedPrices = getCurrentPrices();
+
+            document.getElementById('curriculumTitle').textContent = curriculum.name;
+            document.getElementById('app').className = 'app-container show-comparison';
+
+            renderFilters();
+            renderBooks();
+            updateSummary();
+        }
+
+        function deleteCurriculum(id) {
+            if (!confirm('Delete this curriculum? Your entered prices will also be deleted.')) return;
+
+            const curricula = loadCurricula();
+            delete curricula[id];
+            saveCurricula(curricula);
+
+            const allPrices = loadPrices();
+            delete allPrices[id];
+            savePrices(allPrices);
+
+            if (currentCurriculumId === id) {
+                currentCurriculumId = null;
+                bookData = [];
+                savedPrices = {};
+                showImportScreen();
+            }
+
+            renderSavedCurricula();
+        }
+
+        function showImportScreen() {
+            document.getElementById('app').className = 'app-container show-import';
+            renderSavedCurricula();
+        }
+
+        function renderSavedCurricula() {
+            const curricula = loadCurricula();
+            const list = document.getElementById('curriculumList');
+            const entries = Object.values(curricula).sort((a, b) =>
+                new Date(b.createdAt) - new Date(a.createdAt)
+            );
+
+            if (entries.length === 0) {
+                list.innerHTML = '<p style="color: #64748b; font-size: 0.9em;">No saved curricula yet.</p>';
+                return;
+            }
+
+            list.innerHTML = entries.map(c => {
+                const allPrices = loadPrices();
+                const prices = allPrices[c.id] || {};
+                const pricedCount = Object.keys(prices).filter(sku =>
+                    prices[sku]?.hpb || prices[sku]?.thrift
+                ).length;
+
+                return `
+                    <div class="curriculum-item">
+                        <div class="curriculum-item-info">
+                            <div class="curriculum-item-name">${c.name}</div>
+                            <div class="curriculum-item-meta">${c.books.length} books · ${pricedCount} priced</div>
+                        </div>
+                        <div class="curriculum-item-actions">
+                            <button class="curriculum-item-btn load" onclick="loadCurriculumById('${c.id}')">Load</button>
+                            <button class="curriculum-item-btn delete" onclick="deleteCurriculum('${c.id}')">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==================== Comparison Functions ====================
+
+        function getHPBUrl(title) {
+            return `https://www.hpb.com/search?q=${encodeURIComponent(title)}`;
+        }
+
+        function getThriftBooksUrl(title) {
+            return `https://www.thriftbooks.com/browse/?b.search=${encodeURIComponent(title)}`;
+        }
+
+        function getBestPrice(sku) {
+            const prices = savedPrices[sku] || {};
+            const hpb = parseFloat(prices.hpb) || null;
+            const thrift = parseFloat(prices.thrift) || null;
+
+            if (hpb === null && thrift === null) return null;
+            if (hpb === null) return thrift;
+            if (thrift === null) return hpb;
+            return Math.min(hpb, thrift);
+        }
+
+        function renderBookCard(book) {
+            const prices = savedPrices[book.sku] || {};
+            const bestPrice = getBestPrice(book.sku);
+            const sonlightPrice = parseFloat(book.price) || 0;
+            const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
+            const hasSavings = savings !== null && savings > 0;
+            const hpbNA = prices.hpbNA || false;
+            const thriftNA = prices.thriftNA || false;
+
+            return `
+                <div class="book-card ${hasSavings ? 'has-savings' : ''} ${hpbNA ? 'hpb-na' : ''} ${thriftNA ? 'thrift-na' : ''}" data-sku="${book.sku}" data-category="${book.group}">
+                    <div class="book-card-inner">
+                        <div class="book-image-container">
+                            <img class="book-image" src="${book.imageUrl || ''}" alt="${book.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 130%22><rect fill=%22%23f1f5f9%22 width=%22100%22 height=%22130%22/><text x=%2250%22 y=%2265%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2210%22>No Image</text></svg>'">
+                        </div>
+                        <div class="book-info">
+                            <div class="book-title">
+                                <a href="${book.productUrl}" target="_blank" title="View on Sonlight">${book.title}</a>
+                            </div>
+                            <div class="book-meta">
+                                <span class="book-sku">${book.sku}</span>
+                                <span class="book-category">${book.group}</span>
+                                ${hpbNA ? '<span class="na-badge">HPB N/A</span>' : ''}
+                                ${thriftNA ? '<span class="na-badge">Thrift N/A</span>' : ''}
+                            </div>
+                            <div class="sonlight-price">$${sonlightPrice.toFixed(2)}</div>
+                            <div class="search-links">
+                                <a class="search-link hpb" href="${getHPBUrl(book.title)}" target="_blank">Search HPB</a>
+                                <a class="search-link thriftbooks" href="${getThriftBooksUrl(book.title)}" target="_blank">ThriftBooks</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price-inputs">
+                        <div class="price-input-group">
+                            <label>HPB $</label>
+                            <input type="number" step="0.01" min="0" class="price-input hpb-input"
+                                   data-sku="${book.sku}" data-store="hpb"
+                                   value="${prices.hpb || ''}"
+                                   placeholder="0.00"
+                                   ${hpbNA ? 'disabled' : ''}
+                                   onchange="updatePrice('${book.sku}', 'hpb', this.value)">
+                        </div>
+                        <div class="price-input-group">
+                            <label>Thrift $</label>
+                            <input type="number" step="0.01" min="0" class="price-input thrift-input"
+                                   data-sku="${book.sku}" data-store="thrift"
+                                   value="${prices.thrift || ''}"
+                                   placeholder="0.00"
+                                   ${thriftNA ? 'disabled' : ''}
+                                   onchange="updatePrice('${book.sku}', 'thrift', this.value)">
+                        </div>
+                        <div class="savings-display">
+                            <div class="label">Savings</div>
+                            <div class="amount ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}">
+                                ${savings === null ? '—' : (savings >= 0 ? '+' : '') + '$' + savings.toFixed(2)}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="url-section">
+                        <div class="url-row">
+                            <label>HPB:</label>
+                            <input type="url" class="url-input hpb-url"
+                                   placeholder="Paste HPB product URL here..."
+                                   value="${prices.hpbUrl || ''}"
+                                   ${hpbNA ? 'disabled' : ''}
+                                   onchange="updateUrl('${book.sku}', 'hpbUrl', this.value)">
+                            <a class="visit-link ${prices.hpbUrl ? '' : 'disabled'}"
+                               href="${prices.hpbUrl || '#'}"
+                               target="_blank"
+                               data-sku="${book.sku}" data-store="hpb">Visit</a>
+                            <label class="na-checkbox">
+                                <input type="checkbox" ${hpbNA ? 'checked' : ''}
+                                       onchange="toggleNA('${book.sku}', 'hpbNA', this.checked)">
+                                N/A
+                            </label>
+                        </div>
+                        <div class="url-row">
+                            <label>Thrift:</label>
+                            <input type="url" class="url-input thrift-url"
+                                   placeholder="Paste ThriftBooks product URL here..."
+                                   value="${prices.thriftUrl || ''}"
+                                   ${thriftNA ? 'disabled' : ''}
+                                   onchange="updateUrl('${book.sku}', 'thriftUrl', this.value)">
+                            <a class="visit-link ${prices.thriftUrl ? '' : 'disabled'}"
+                               href="${prices.thriftUrl || '#'}"
+                               target="_blank"
+                               data-sku="${book.sku}" data-store="thrift">Visit</a>
+                            <label class="na-checkbox">
+                                <input type="checkbox" ${thriftNA ? 'checked' : ''}
+                                       onchange="toggleNA('${book.sku}', 'thriftNA', this.checked)">
+                                N/A
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updatePrice(sku, store, value) {
+            if (!savedPrices[sku]) savedPrices[sku] = {};
+
+            if (value === '' || value === null) {
+                delete savedPrices[sku][store];
+            } else {
+                savedPrices[sku][store] = parseFloat(value);
+            }
+
+            saveCurrentPrices(savedPrices);
+            updateSummary();
+            updateCardSavings(sku);
+        }
+
+        function updateUrl(sku, field, value) {
+            if (!savedPrices[sku]) savedPrices[sku] = {};
+
+            if (value === '' || value === null) {
+                delete savedPrices[sku][field];
+            } else {
+                savedPrices[sku][field] = value;
+            }
+
+            saveCurrentPrices(savedPrices);
+
+            const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
+            if (card) {
+                const store = field === 'hpbUrl' ? 'hpb' : 'thrift';
+                const visitLink = card.querySelector(`.visit-link[data-store="${store}"]`);
+                if (visitLink) {
+                    visitLink.href = value || '#';
+                    visitLink.classList.toggle('disabled', !value);
+                }
+            }
+        }
+
+        function toggleNA(sku, field, checked) {
+            if (!savedPrices[sku]) savedPrices[sku] = {};
+
+            savedPrices[sku][field] = checked;
+
+            if (checked) {
+                if (field === 'hpbNA') {
+                    delete savedPrices[sku].hpb;
+                    delete savedPrices[sku].hpbUrl;
+                } else {
+                    delete savedPrices[sku].thrift;
+                    delete savedPrices[sku].thriftUrl;
+                }
+            }
+
+            saveCurrentPrices(savedPrices);
+            updateSummary();
+
+            const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
+            if (card) {
+                const book = bookData.find(b => b.sku === sku);
+                const newCard = document.createElement('div');
+                newCard.innerHTML = renderBookCard(book);
+                card.replaceWith(newCard.firstElementChild);
+            }
+        }
+
+        function updateCardSavings(sku) {
+            const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
+            if (card) {
+                const book = bookData.find(b => b.sku === sku);
+                const bestPrice = getBestPrice(sku);
+                const sonlightPrice = parseFloat(book.price) || 0;
+                const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
+
+                const savingsEl = card.querySelector('.savings-display .amount');
+                savingsEl.className = `amount ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}`;
+                savingsEl.textContent = savings === null ? '—' : (savings >= 0 ? '+' : '') + '$' + savings.toFixed(2);
+
+                card.classList.toggle('has-savings', savings !== null && savings > 0);
+            }
+        }
+
+        function updateSummary() {
+            let totalSonlight = 0;
+            let totalBest = 0;
+            let pricedCount = 0;
+
+            bookData.forEach(book => {
+                totalSonlight += parseFloat(book.price) || 0;
+
+                const bestPrice = getBestPrice(book.sku);
+                if (bestPrice !== null) {
+                    totalBest += bestPrice;
+                    pricedCount++;
+                }
+            });
+
+            document.getElementById('totalSonlight').textContent = '$' + totalSonlight.toFixed(2);
+            document.getElementById('totalHPB').textContent = pricedCount > 0 ? '$' + totalBest.toFixed(2) : '$0.00';
+
+            const savings = pricedCount > 0 ? (totalSonlight - totalBest) : 0;
+            const savingsEl = document.getElementById('totalSavings');
+            savingsEl.textContent = (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2);
+            savingsEl.style.color = savings >= 0 ? '#16a34a' : '#dc2626';
+
+            document.getElementById('progress').textContent = `${pricedCount} / ${bookData.length}`;
+        }
+
+        function renderFilters() {
+            const groups = {};
+            bookData.forEach(book => {
+                groups[book.group] = (groups[book.group] || 0) + 1;
+            });
+
+            const filtersEl = document.getElementById('filters');
+            let html = `<button class="filter-btn active" data-filter="all">All<span class="count">${bookData.length}</span></button>`;
+
+            Object.entries(groups).sort((a, b) => b[1] - a[1]).forEach(([group, count]) => {
+                html += `<button class="filter-btn" data-filter="${group}">${group}<span class="count">${count}</span></button>`;
+            });
+
+            filtersEl.innerHTML = html;
+
+            filtersEl.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    filterBooks(btn.dataset.filter);
+                });
+            });
+        }
+
+        function filterBooks(filter) {
+            document.querySelectorAll('.book-card').forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function renderBooks() {
+            const grid = document.getElementById('bookGrid');
+            grid.innerHTML = bookData.map(renderBookCard).join('');
+        }
+
+        function exportToCSV() {
+            const curricula = loadCurricula();
+            const curriculum = curricula[currentCurriculumId];
+            const name = curriculum?.name || 'curriculum';
+
+            const headers = ['SKU', 'Title', 'Category', 'Sonlight Price', 'HPB Price', 'HPB URL', 'HPB N/A', 'ThriftBooks Price', 'ThriftBooks URL', 'Thrift N/A', 'Best Price', 'Savings', 'Sonlight URL'];
+
+            const rows = bookData.map(book => {
+                const prices = savedPrices[book.sku] || {};
+                const hpbPrice = prices.hpb || '';
+                const hpbUrl = prices.hpbUrl || '';
+                const hpbNA = prices.hpbNA ? 'Yes' : '';
+                const thriftPrice = prices.thrift || '';
+                const thriftUrl = prices.thriftUrl || '';
+                const thriftNA = prices.thriftNA ? 'Yes' : '';
+                const bestPrice = getBestPrice(book.sku);
+                const sonlightPrice = parseFloat(book.price) || 0;
+                const savings = bestPrice !== null ? (sonlightPrice - bestPrice).toFixed(2) : '';
+
+                return [
+                    book.sku,
+                    `"${(book.title || '').replace(/"/g, '""')}"`,
+                    book.group,
+                    sonlightPrice.toFixed(2),
+                    hpbPrice,
+                    `"${hpbUrl}"`,
+                    hpbNA,
+                    thriftPrice,
+                    `"${thriftUrl}"`,
+                    thriftNA,
+                    bestPrice !== null ? bestPrice.toFixed(2) : '',
+                    savings,
+                    book.productUrl || ''
+                ].join(',');
+            });
+
+            const csv = [headers.join(','), ...rows].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${name.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-comparison.csv`;
+            a.click();
+
+            URL.revokeObjectURL(url);
+        }
+
+        function clearAllPrices() {
+            if (confirm('Are you sure you want to clear all entered prices for this curriculum? This cannot be undone.')) {
+                savedPrices = {};
+                saveCurrentPrices(savedPrices);
+                renderBooks();
+                updateSummary();
+            }
+        }
+
+        // ==================== Initialize ====================
+        renderSavedCurricula();
+    </script>
+</body>
+</html>
