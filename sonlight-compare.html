@@ -3,8 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonlight Book Price Comparison</title>
+    <title>Sonlight Book Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            /* Soft, warm palette */
+            --cream: #FDF8F3;
+            --cream-dark: #F5EDE4;
+            --sage: #9BB5A0;
+            --sage-light: #C5D9C8;
+            --sage-dark: #5A7A60;
+            --rose: #E8B4B8;
+            --rose-light: #F5D5D8;
+            --rose-dark: #A86B70;
+            --terracotta: #B8865A;
+            --terracotta-light: #E8C9A8;
+            --lavender: #8B7FA8;
+            --lavender-light: #E0DCE8;
+            --text-dark: #2D2D2D;
+            --text-medium: #555555;
+            --text-light: #707070;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(155, 181, 160, 0.15);
+            --shadow-medium: 0 8px 30px rgba(155, 181, 160, 0.2);
+            --shadow-lifted: 0 12px 40px rgba(155, 181, 160, 0.25);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+            --radius-xl: 40px;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,214 +43,370 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f1f5f9;
-            color: #334155;
-            line-height: 1.5;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Organic background shapes */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(ellipse, var(--sage-light) 0%, transparent 70%);
+            opacity: 0.4;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            left: -15%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(ellipse, var(--rose-light) 0%, transparent 70%);
+            opacity: 0.3;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        /* ==================== Header ==================== */
         header {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            color: white;
-            padding: 20px;
+            background: var(--white);
+            padding: 20px 30px;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-soft);
+            border-bottom: 3px solid var(--sage-light);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .header-left h1 {
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-
-        .header-subtitle {
-            opacity: 0.9;
-            font-size: 0.9em;
-        }
-
-        .header-actions {
+        .logo {
             display: flex;
-            gap: 10px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(155, 181, 160, 0.3);
+            color: var(--white);
+        }
+
+        .logo-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            font-size: 0.8em;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         .header-btn {
-            padding: 8px 16px;
-            border: 2px solid rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-radius: 6px;
+            padding: 12px 24px;
+            background: var(--sage);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-xl);
             cursor: pointer;
-            font-size: 0.85em;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(155, 181, 160, 0.3);
         }
 
         .header-btn:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.5);
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(155, 181, 160, 0.4);
         }
 
-        /* Import Screen */
+        /* ==================== Import Screen ==================== */
         .import-screen {
-            max-width: 800px;
-            margin: 40px auto;
+            max-width: 700px;
+            margin: 60px auto;
             padding: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .import-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .import-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--sage), var(--rose), var(--terracotta));
         }
 
         .import-card h2 {
-            margin-bottom: 10px;
-            color: #1e293b;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
         }
 
-        .import-card p {
-            color: #64748b;
-            margin-bottom: 20px;
+        .import-card > p {
+            color: var(--text-medium);
+            margin-bottom: 25px;
+            font-size: 1.05em;
         }
 
-        .import-card ol {
-            margin: 20px 0;
-            padding-left: 20px;
-            color: #475569;
+        .steps-container {
+            background: var(--cream);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin-bottom: 25px;
         }
 
-        .import-card li {
-            margin-bottom: 10px;
-        }
-
-        .import-card code {
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-
-        .json-input {
-            width: 100%;
-            height: 200px;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-family: monospace;
+        .steps-container h3 {
             font-size: 0.85em;
-            resize: vertical;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--sage-dark);
             margin-bottom: 15px;
+            font-weight: 700;
         }
 
-        .json-input:focus {
-            outline: none;
-            border-color: #3b82f6;
+        .steps-container ol {
+            padding-left: 0;
+            counter-reset: steps;
+            list-style: none;
+        }
+
+        .steps-container li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-medium);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .steps-container li::before {
+            content: counter(steps);
+            min-width: 28px;
+            height: 28px;
+            background: var(--sage-light);
+            color: var(--sage-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        .steps-container code {
+            background: var(--white);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: var(--rose-dark);
+            font-weight: 600;
         }
 
         .curriculum-name-input {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            padding: 16px 20px;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-md);
+            font-family: 'Nunito', sans-serif;
             font-size: 1em;
             margin-bottom: 15px;
+            transition: all 0.3s ease;
+            background: var(--white);
         }
 
         .curriculum-name-input:focus {
             outline: none;
-            border-color: #3b82f6;
+            border-color: var(--sage);
+            box-shadow: 0 0 0 4px rgba(155, 181, 160, 0.15);
         }
 
-        .import-btn {
+        .curriculum-name-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .json-input {
             width: 100%;
-            padding: 15px;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+            height: 160px;
+            padding: 16px 20px;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-md);
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.85em;
+            resize: vertical;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            background: var(--cream);
         }
 
-        .import-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .import-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
+        .json-input:focus {
+            outline: none;
+            border-color: var(--sage);
+            box-shadow: 0 0 0 4px rgba(155, 181, 160, 0.15);
+            background: var(--white);
         }
 
         .import-error {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
-            padding: 12px;
-            border-radius: 8px;
+            background: var(--rose-light);
+            border: 2px solid var(--rose);
+            color: var(--rose-dark);
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
             margin-bottom: 15px;
             display: none;
+            font-weight: 600;
         }
 
         .import-progress {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-            padding: 12px;
-            border-radius: 8px;
+            background: var(--sage-light);
+            border: 2px solid var(--sage);
+            color: var(--sage-dark);
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
             margin-bottom: 15px;
             display: none;
+            font-weight: 600;
         }
 
         .progress-bar {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
+            height: 10px;
+            background: var(--white);
+            border-radius: 10px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: #22c55e;
-            transition: width 0.3s;
+            background: linear-gradient(90deg, var(--sage), var(--sage-dark));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .import-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-xl);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 25px rgba(155, 181, 160, 0.35);
+        }
+
+        .import-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(155, 181, 160, 0.45);
+        }
+
+        .import-btn:disabled {
+            background: var(--cream-dark);
+            color: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         /* Saved Curricula */
         .saved-curricula {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 2px dashed var(--cream-dark);
         }
 
         .saved-curricula h3 {
-            margin-bottom: 15px;
-            color: #475569;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: var(--text-dark);
         }
 
         .curriculum-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .curriculum-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            padding: 18px 22px;
+            background: var(--cream);
+            border-radius: var(--radius-md);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .curriculum-item:hover {
+            border-color: var(--sage-light);
+            box-shadow: var(--shadow-soft);
         }
 
         .curriculum-item-info {
@@ -227,119 +414,158 @@
         }
 
         .curriculum-item-name {
-            font-weight: 600;
-            color: #1e293b;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.05em;
         }
 
         .curriculum-item-meta {
-            font-size: 0.8em;
-            color: #64748b;
+            font-size: 0.85em;
+            color: var(--text-light);
+            margin-top: 3px;
         }
 
         .curriculum-item-actions {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .curriculum-item-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8em;
+            padding: 10px 18px;
+            border-radius: var(--radius-xl);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85em;
+            font-weight: 700;
             cursor: pointer;
             border: none;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
         .curriculum-item-btn.load {
-            background: #dbeafe;
-            color: #1d4ed8;
+            background: var(--sage);
+            color: var(--white);
         }
 
         .curriculum-item-btn.load:hover {
-            background: #bfdbfe;
+            background: var(--sage-dark);
+            transform: translateY(-2px);
         }
 
         .curriculum-item-btn.delete {
-            background: #fee2e2;
-            color: #dc2626;
+            background: var(--rose-light);
+            color: var(--rose-dark);
         }
 
         .curriculum-item-btn.delete:hover {
-            background: #fecaca;
+            background: var(--rose);
+            color: var(--white);
         }
 
-        /* Summary Bar */
-        .summary-bar {
-            background: white;
-            padding: 15px 20px;
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #e2e8f0;
-            position: sticky;
-            top: 76px;
-            z-index: 99;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .summary-item {
+        .empty-state {
             text-align: center;
+            padding: 30px;
+            color: var(--text-light);
         }
 
-        .summary-item .label {
+        .empty-state-icon {
+            margin-bottom: 10px;
+            color: var(--sage);
+        }
+
+        .empty-state-icon svg {
+            width: 56px;
+            height: 56px;
+            stroke-width: 1.5;
+        }
+
+        /* ==================== Summary Bar ==================== */
+        .summary-bar {
+            background: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 2px solid var(--cream-dark);
+            position: sticky;
+            top: 91px;
+            z-index: 99;
+        }
+
+        .summary-card {
+            background: var(--cream);
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            min-width: 140px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .summary-card .label {
             font-size: 0.75em;
-            color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
-        .summary-item .value {
-            font-size: 1.4em;
+        .summary-card .value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
             font-weight: 700;
         }
 
-        .summary-item .value.sonlight { color: #dc2626; }
-        .summary-item .value.hpb { color: #2563eb; }
-        .summary-item .value.savings { color: #16a34a; }
-        .summary-item .value.progress { color: #7c3aed; }
+        .summary-card.sonlight .value { color: var(--rose-dark); }
+        .summary-card.best .value { color: var(--sage-dark); }
+        .summary-card.savings .value { color: var(--sage); }
+        .summary-card.progress .value { color: var(--terracotta); }
 
-        /* Filters */
+        /* ==================== Filters ==================== */
         .filters {
-            padding: 15px 20px;
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 30px;
+            background: var(--cream);
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--cream-dark);
         }
 
         .filter-btn {
-            padding: 6px 14px;
-            border: 1px solid #cbd5e1;
-            background: white;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border: 2px solid var(--cream-dark);
+            background: var(--white);
+            border-radius: var(--radius-xl);
             cursor: pointer;
-            font-size: 0.85em;
-            transition: all 0.2s;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--text-medium);
+            transition: all 0.3s ease;
         }
 
         .filter-btn:hover {
-            border-color: #3b82f6;
-            color: #3b82f6;
+            border-color: var(--sage);
+            color: var(--sage-dark);
         }
 
         .filter-btn.active {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
+            background: var(--sage);
+            color: var(--white);
+            border-color: var(--sage);
         }
 
         .filter-btn .count {
             background: rgba(0,0,0,0.1);
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 5px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 6px;
             font-size: 0.85em;
         }
 
@@ -347,44 +573,75 @@
             background: rgba(255,255,255,0.25);
         }
 
-        /* Main content */
+        /* ==================== Main Content ==================== */
         main {
-            padding: 20px;
+            padding: 30px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* Book Grid */
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
         }
 
-        /* Book Card */
+        /* ==================== Book Card ==================== */
         .book-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: all 0.2s;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
+            border: 2px solid transparent;
+            animation: cardFadeIn 0.5s ease-out backwards;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .book-card:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lifted);
         }
 
         .book-card.has-savings {
-            border: 2px solid #22c55e;
+            border-color: var(--sage);
+        }
+
+        .book-card.has-savings::after {
+            content: 'Savings Found';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--sage);
+            color: var(--white);
+            padding: 5px 40px;
+            font-size: 0.7em;
+            font-weight: 700;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .book-card {
+            position: relative;
         }
 
         .book-card-inner {
             display: flex;
-            gap: 15px;
-            padding: 15px;
+            gap: 18px;
+            padding: 22px;
         }
 
         .book-image-container {
@@ -394,11 +651,17 @@
 
         .book-image {
             width: 100px;
-            height: 130px;
+            height: 140px;
             object-fit: contain;
-            background: #f8fafc;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--cream-dark);
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover .book-image {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-soft);
         }
 
         .book-info {
@@ -407,165 +670,206 @@
         }
 
         .book-title {
+            font-family: 'Playfair Display', serif;
             font-weight: 600;
-            font-size: 1em;
-            margin-bottom: 4px;
-            color: #1e293b;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            line-height: 1.3;
         }
 
         .book-title a {
             color: inherit;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .book-title a:hover {
-            color: #2563eb;
-            text-decoration: underline;
+            color: var(--sage-dark);
         }
 
         .book-meta {
             display: flex;
             gap: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
 
         .book-sku {
-            background: #f1f5f9;
-            color: #64748b;
-            padding: 2px 8px;
-            border-radius: 4px;
+            background: var(--cream);
+            color: var(--text-light);
+            padding: 4px 10px;
+            border-radius: 20px;
             font-size: 0.75em;
-            font-family: monospace;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-weight: 600;
         }
 
         .book-category {
-            background: #dbeafe;
-            color: #1d4ed8;
-            padding: 2px 8px;
-            border-radius: 4px;
+            background: var(--lavender-light);
+            color: var(--lavender);
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 0.75em;
+            font-weight: 700;
+        }
+
+        .na-badge {
+            background: var(--rose-light);
+            color: var(--rose-dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 700;
         }
 
         .sonlight-price {
-            font-size: 1.3em;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
             font-weight: 700;
-            color: #dc2626;
+            color: var(--rose-dark);
         }
 
-        /* Search Links */
         .search-links {
             display: flex;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 14px;
         }
 
         .search-link {
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-xl);
             font-size: 0.8em;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
         .search-link.hpb {
-            background: #fef3c7;
-            color: #92400e;
+            background: var(--terracotta-light);
+            color: var(--terracotta);
         }
 
         .search-link.hpb:hover {
-            background: #fde68a;
+            background: var(--terracotta);
+            color: var(--white);
+            transform: translateY(-2px);
         }
 
         .search-link.thriftbooks {
-            background: #d1fae5;
-            color: #065f46;
+            background: var(--sage-light);
+            color: var(--sage-dark);
         }
 
         .search-link.thriftbooks:hover {
-            background: #a7f3d0;
+            background: var(--sage);
+            color: var(--white);
+            transform: translateY(-2px);
         }
 
-        /* Price Input Section */
+        /* ==================== Price Inputs ==================== */
         .price-inputs {
-            background: #f8fafc;
-            padding: 12px 15px;
-            border-top: 1px solid #e2e8f0;
+            background: var(--cream);
+            padding: 16px 22px;
             display: flex;
             gap: 15px;
             align-items: center;
             flex-wrap: wrap;
+            border-top: 2px solid var(--cream-dark);
         }
 
         .price-input-group {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .price-input-group label {
             font-size: 0.8em;
-            color: #64748b;
-            font-weight: 500;
+            color: var(--text-light);
+            font-weight: 700;
         }
 
         .price-input {
-            width: 80px;
-            padding: 6px 8px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 0.9em;
+            width: 85px;
+            padding: 10px 12px;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95em;
+            font-weight: 600;
             text-align: right;
+            transition: all 0.3s ease;
         }
 
         .price-input:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(155, 181, 160, 0.15);
         }
 
         .price-input.hpb-input {
-            background: #fffbeb;
+            background: var(--terracotta-light);
+            border-color: var(--terracotta-light);
+        }
+
+        .price-input.hpb-input:focus {
+            border-color: var(--terracotta);
         }
 
         .price-input.thrift-input {
-            background: #ecfdf5;
+            background: var(--sage-light);
+            border-color: var(--sage-light);
         }
 
-        /* Savings display */
+        .price-input.thrift-input:focus {
+            border-color: var(--sage);
+        }
+
+        .price-input:disabled {
+            background: var(--cream-dark);
+            color: var(--text-light);
+            border-color: var(--cream-dark);
+        }
+
         .savings-display {
             margin-left: auto;
             text-align: right;
+            background: var(--white);
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
         }
 
         .savings-display .label {
             font-size: 0.7em;
-            color: #64748b;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            font-weight: 700;
         }
 
         .savings-display .amount {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.1em;
+            font-size: 1.2em;
         }
 
-        .savings-display .amount.positive { color: #16a34a; }
-        .savings-display .amount.negative { color: #dc2626; }
-        .savings-display .amount.neutral { color: #64748b; }
+        .savings-display .amount.positive { color: var(--sage); }
+        .savings-display .amount.negative { color: var(--rose-dark); }
+        .savings-display .amount.neutral { color: var(--text-light); }
 
-        /* URL inputs section */
+        /* ==================== URL Section ==================== */
         .url-section {
-            background: #f1f5f9;
-            padding: 10px 15px;
-            border-top: 1px solid #e2e8f0;
+            background: var(--white);
+            padding: 14px 22px;
+            border-top: 1px dashed var(--cream-dark);
         }
 
         .url-row {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .url-row:last-child {
@@ -574,185 +878,237 @@
 
         .url-row label {
             font-size: 0.75em;
-            color: #64748b;
-            font-weight: 600;
+            color: var(--text-light);
+            font-weight: 700;
             width: 50px;
             flex-shrink: 0;
         }
 
         .url-input {
             flex: 1;
-            padding: 5px 8px;
-            border: 1px solid #cbd5e1;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            font-family: 'Nunito', sans-serif;
             font-size: 0.8em;
             min-width: 0;
+            transition: all 0.3s ease;
         }
 
         .url-input:focus {
             outline: none;
-            border-color: #3b82f6;
+            border-color: var(--sage);
         }
 
         .url-input.hpb-url {
-            background: #fffbeb;
+            background: rgba(212, 165, 116, 0.1);
         }
 
         .url-input.thrift-url {
-            background: #ecfdf5;
+            background: rgba(155, 181, 160, 0.1);
         }
 
         .url-input:disabled {
-            background: #e2e8f0;
-            color: #94a3b8;
+            background: var(--cream-dark);
+            color: var(--text-light);
+        }
+
+        .visit-link {
+            padding: 6px 12px;
+            background: var(--cream);
+            color: var(--text-medium);
+            border-radius: var(--radius-sm);
+            font-size: 0.75em;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .visit-link:hover {
+            background: var(--sage-light);
+            color: var(--sage-dark);
+        }
+
+        .visit-link.disabled {
+            opacity: 0.4;
+            pointer-events: none;
         }
 
         .na-checkbox {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             font-size: 0.75em;
-            color: #64748b;
+            color: var(--text-light);
             cursor: pointer;
+            font-weight: 600;
             white-space: nowrap;
+            padding: 6px 10px;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .na-checkbox:hover {
+            background: var(--rose-light);
         }
 
         .na-checkbox input {
             cursor: pointer;
+            accent-color: var(--rose);
         }
 
-        .visit-link {
-            padding: 4px 8px;
-            background: #e2e8f0;
-            color: #475569;
-            border-radius: 4px;
-            font-size: 0.7em;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .visit-link:hover {
-            background: #cbd5e1;
-        }
-
-        .visit-link.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        /* Not available styling */
-        .book-card.hpb-na .hpb-input,
-        .book-card.thrift-na .thrift-input {
-            background: #e2e8f0;
-            color: #94a3b8;
-        }
-
-        .na-badge {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.7em;
-            font-weight: 500;
-        }
-
-        /* Export button */
+        /* ==================== Export Section ==================== */
         .export-section {
-            padding: 20px;
+            padding: 40px 20px;
             text-align: center;
             margin-top: 20px;
         }
 
         .export-btn {
-            padding: 12px 30px;
-            background: #2563eb;
-            color: white;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            color: var(--white);
             border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
+            border-radius: var(--radius-xl);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.05em;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 25px rgba(155, 181, 160, 0.35);
         }
 
         .export-btn:hover {
-            background: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(155, 181, 160, 0.45);
         }
 
         .clear-btn {
-            padding: 12px 30px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
+            padding: 16px 40px;
+            background: var(--white);
+            color: var(--rose-dark);
+            border: 2px solid var(--rose);
+            border-radius: var(--radius-xl);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.05em;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
-            margin-left: 10px;
+            transition: all 0.3s ease;
+            margin-left: 15px;
         }
 
         .clear-btn:hover {
-            background: #dc2626;
+            background: var(--rose);
+            color: var(--white);
         }
 
-        /* Hidden when filtered */
+        /* ==================== Utilities ==================== */
         .book-card.hidden {
             display: none;
         }
 
-        /* Hide sections based on app state */
         .app-container.show-import .comparison-view { display: none; }
         .app-container.show-import .import-screen { display: block; }
         .app-container.show-comparison .comparison-view { display: block; }
         .app-container.show-comparison .import-screen { display: none; }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-bar {
+                top: 140px;
+            }
+
+            .price-inputs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .savings-display {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .url-row {
+                flex-wrap: wrap;
+            }
+
+            .url-input {
+                flex: 1 1 100%;
+                order: 1;
+            }
+
+            .url-row label {
+                order: 0;
+            }
+
+            .visit-link, .na-checkbox {
+                order: 2;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="app-container show-import" id="app">
         <header>
-            <div class="header-left">
-                <h1>Sonlight Book Price Comparison</h1>
-                <div class="header-subtitle" id="curriculumTitle">Load a curriculum to get started</div>
-            </div>
-            <div class="header-actions">
-                <button class="header-btn" onclick="showImportScreen()">Load Curriculum</button>
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon"><i data-lucide="book-open" stroke-width="1.5"></i></div>
+                    <div class="logo-text">
+                        <h1>Sonlight Book Finder</h1>
+                        <span id="curriculumTitle">Find the best prices on your curriculum books</span>
+                    </div>
+                </div>
+                <button class="header-btn" onclick="showImportScreen()">+ Load Curriculum</button>
             </div>
         </header>
 
         <!-- Import Screen -->
         <div class="import-screen">
             <div class="import-card">
-                <h2>Load Curriculum Data</h2>
-                <p>Paste the GraphQL JSON response from your browser's Network tab to load a curriculum.</p>
+                <h2>Welcome! Let's Find Some Deals</h2>
+                <p>Paste your curriculum data below to start comparing book prices across Half Price Books and ThriftBooks.</p>
 
-                <ol>
-                    <li>Go to a Sonlight curriculum page (e.g., <code>sonlight.com/products/intro-to-world-history...</code>)</li>
-                    <li>Open browser DevTools (F12) → Network tab</li>
-                    <li>Refresh the page, then filter by "graphql"</li>
-                    <li>Click the request to <code>graphql.json</code>, go to Response tab</li>
-                    <li>Copy the entire JSON response and paste below</li>
-                </ol>
+                <div class="steps-container">
+                    <h3>How to get your curriculum data</h3>
+                    <ol>
+                        <li>Go to your Sonlight curriculum page (e.g., <code>sonlight.com/products/intro-to-world-history...</code>)</li>
+                        <li>Open browser DevTools — press <code>F12</code> or right-click → Inspect</li>
+                        <li>Click the <code>Network</code> tab, then refresh the page</li>
+                        <li>Type <code>graphql</code> in the filter box to find the request</li>
+                        <li>Click the request, go to <code>Response</code> tab, copy everything</li>
+                    </ol>
+                </div>
 
                 <input type="text" class="curriculum-name-input" id="curriculumName"
-                       placeholder="Curriculum name (e.g., 'Intro to World History Year 2')">
+                       placeholder="Give this curriculum a name (e.g., 'History Year 2')">
 
                 <div class="import-error" id="importError"></div>
                 <div class="import-progress" id="importProgress">
-                    <span id="progressText">Fetching prices...</span>
+                    <span id="progressText">Fetching prices from Sonlight...</span>
                     <div class="progress-bar">
                         <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
                     </div>
                 </div>
 
-                <textarea class="json-input" id="jsonInput" placeholder="Paste GraphQL JSON response here..."></textarea>
+                <textarea class="json-input" id="jsonInput" placeholder="Paste the GraphQL JSON response here..."></textarea>
 
                 <button class="import-btn" id="importBtn" onclick="importCurriculum()">
                     Import & Fetch Prices
                 </button>
 
                 <div class="saved-curricula" id="savedCurricula">
-                    <h3>Saved Curricula</h3>
+                    <h3>Your Saved Curricula</h3>
                     <div class="curriculum-list" id="curriculumList"></div>
                 </div>
             </div>
@@ -761,21 +1117,21 @@
         <!-- Comparison View -->
         <div class="comparison-view">
             <div class="summary-bar">
-                <div class="summary-item">
+                <div class="summary-card sonlight">
                     <div class="label">Sonlight Total</div>
-                    <div class="value sonlight" id="totalSonlight">$0.00</div>
+                    <div class="value" id="totalSonlight">$0</div>
                 </div>
-                <div class="summary-item">
-                    <div class="label">Best Price Total</div>
-                    <div class="value hpb" id="totalHPB">$0.00</div>
+                <div class="summary-card best">
+                    <div class="label">Best Prices</div>
+                    <div class="value" id="totalHPB">$0</div>
                 </div>
-                <div class="summary-item">
-                    <div class="label">Potential Savings</div>
-                    <div class="value savings" id="totalSavings">$0.00</div>
+                <div class="summary-card savings">
+                    <div class="label">Your Savings</div>
+                    <div class="value" id="totalSavings">$0</div>
                 </div>
-                <div class="summary-item">
+                <div class="summary-card progress">
                     <div class="label">Progress</div>
-                    <div class="value progress" id="progress">0 / 0</div>
+                    <div class="value" id="progress">0/0</div>
                 </div>
             </div>
 
@@ -785,8 +1141,8 @@
                 <div class="book-grid" id="bookGrid"></div>
 
                 <div class="export-section">
-                    <button class="export-btn" onclick="exportToCSV()">Export to CSV</button>
-                    <button class="clear-btn" onclick="clearAllPrices()">Clear All Prices</button>
+                    <button class="export-btn" onclick="exportToCSV()"><i data-lucide="download" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 8px;"></i>Export to CSV</button>
+                    <button class="clear-btn" onclick="clearAllPrices()">Clear Prices</button>
                 </div>
             </main>
         </div>
@@ -857,7 +1213,7 @@
                     productUrl: node.product?.handle
                         ? `https://www.sonlight.com/products/${node.product.handle}?variant=${variantId}`
                         : null,
-                    price: null // Will be fetched
+                    price: null
                 };
             });
         }
@@ -901,42 +1257,38 @@
             try {
                 parsed = JSON.parse(jsonInput);
             } catch (e) {
-                errorEl.textContent = 'Invalid JSON. Please check your paste and try again.';
+                errorEl.textContent = 'Hmm, that doesn\'t look like valid JSON. Please check your paste and try again.';
                 errorEl.style.display = 'block';
                 return;
             }
 
             const items = parseGraphQLResponse(parsed);
             if (items.length === 0) {
-                errorEl.textContent = 'No items found in the JSON. Make sure you copied the correct GraphQL response.';
+                errorEl.textContent = 'No books found in that JSON. Make sure you copied the right GraphQL response.';
                 errorEl.style.display = 'block';
                 return;
             }
 
-            // Show progress
             progressEl.style.display = 'block';
             importBtn.disabled = true;
 
-            // Fetch prices with progress
             for (let i = 0; i < items.length; i++) {
                 const item = items[i];
-                progressText.textContent = `Fetching prices... ${i + 1}/${items.length} - ${item.title?.substring(0, 30) || 'Unknown'}`;
+                const shortTitle = item.title?.substring(0, 35) || 'Unknown';
+                progressText.textContent = `Fetching prices... ${i + 1}/${items.length} — ${shortTitle}${item.title?.length > 35 ? '...' : ''}`;
                 progressFill.style.width = `${((i + 1) / items.length) * 100}%`;
 
                 if (item.handle) {
                     item.price = await fetchProductPrice(item.handle);
                 }
 
-                // Small delay to be nice to the server
                 if (i < items.length - 1) {
                     await new Promise(r => setTimeout(r, 150));
                 }
             }
 
-            // Generate curriculum ID
             const curriculumId = 'curriculum_' + Date.now();
 
-            // Save curriculum
             const curricula = loadCurricula();
             curricula[curriculumId] = {
                 id: curriculumId,
@@ -946,10 +1298,8 @@
             };
             saveCurricula(curricula);
 
-            // Load the curriculum
             loadCurriculumById(curriculumId);
 
-            // Reset form
             document.getElementById('jsonInput').value = '';
             document.getElementById('curriculumName').value = '';
             progressEl.style.display = 'none';
@@ -975,7 +1325,7 @@
         }
 
         function deleteCurriculum(id) {
-            if (!confirm('Delete this curriculum? Your entered prices will also be deleted.')) return;
+            if (!confirm('Delete this curriculum? Your entered prices will also be removed.')) return;
 
             const curricula = loadCurricula();
             delete curricula[id];
@@ -997,6 +1347,7 @@
 
         function showImportScreen() {
             document.getElementById('app').className = 'app-container show-import';
+            document.getElementById('curriculumTitle').textContent = 'Find the best prices on your curriculum books';
             renderSavedCurricula();
         }
 
@@ -1008,7 +1359,13 @@
             );
 
             if (entries.length === 0) {
-                list.innerHTML = '<p style="color: #64748b; font-size: 0.9em;">No saved curricula yet.</p>';
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon"><i data-lucide="book-marked"></i></div>
+                        <p>No curricula saved yet. Import one above to get started!</p>
+                    </div>
+                `;
+                lucide.createIcons();
                 return;
             }
 
@@ -1026,7 +1383,7 @@
                             <div class="curriculum-item-meta">${c.books.length} books · ${pricedCount} priced</div>
                         </div>
                         <div class="curriculum-item-actions">
-                            <button class="curriculum-item-btn load" onclick="loadCurriculumById('${c.id}')">Load</button>
+                            <button class="curriculum-item-btn load" onclick="loadCurriculumById('${c.id}')">Open</button>
                             <button class="curriculum-item-btn delete" onclick="deleteCurriculum('${c.id}')">Delete</button>
                         </div>
                     </div>
@@ -1055,7 +1412,7 @@
             return Math.min(hpb, thrift);
         }
 
-        function renderBookCard(book) {
+        function renderBookCard(book, index) {
             const prices = savedPrices[book.sku] || {};
             const bestPrice = getBestPrice(book.sku);
             const sonlightPrice = parseFloat(book.price) || 0;
@@ -1065,10 +1422,13 @@
             const thriftNA = prices.thriftNA || false;
 
             return `
-                <div class="book-card ${hasSavings ? 'has-savings' : ''} ${hpbNA ? 'hpb-na' : ''} ${thriftNA ? 'thrift-na' : ''}" data-sku="${book.sku}" data-category="${book.group}">
+                <div class="book-card ${hasSavings ? 'has-savings' : ''} ${hpbNA ? 'hpb-na' : ''} ${thriftNA ? 'thrift-na' : ''}"
+                     data-sku="${book.sku}" data-category="${book.group}"
+                     style="animation-delay: ${index * 0.05}s">
                     <div class="book-card-inner">
                         <div class="book-image-container">
-                            <img class="book-image" src="${book.imageUrl || ''}" alt="${book.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 130%22><rect fill=%22%23f1f5f9%22 width=%22100%22 height=%22130%22/><text x=%2250%22 y=%2265%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2210%22>No Image</text></svg>'">
+                            <img class="book-image" src="${book.imageUrl || ''}" alt="${book.title}" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 140%22><rect fill=%22%23F5EDE4%22 width=%22100%22 height=%22140%22/><text x=%2250%22 y=%2270%22 text-anchor=%22middle%22 fill=%22%239A9A9A%22 font-size=%2212%22>No Cover</text></svg>'">
                         </div>
                         <div class="book-info">
                             <div class="book-title">
@@ -1089,27 +1449,27 @@
                     </div>
                     <div class="price-inputs">
                         <div class="price-input-group">
-                            <label>HPB $</label>
+                            <label>HPB</label>
                             <input type="number" step="0.01" min="0" class="price-input hpb-input"
                                    data-sku="${book.sku}" data-store="hpb"
                                    value="${prices.hpb || ''}"
-                                   placeholder="0.00"
+                                   placeholder="$0.00"
                                    ${hpbNA ? 'disabled' : ''}
                                    onchange="updatePrice('${book.sku}', 'hpb', this.value)">
                         </div>
                         <div class="price-input-group">
-                            <label>Thrift $</label>
+                            <label>Thrift</label>
                             <input type="number" step="0.01" min="0" class="price-input thrift-input"
                                    data-sku="${book.sku}" data-store="thrift"
                                    value="${prices.thrift || ''}"
-                                   placeholder="0.00"
+                                   placeholder="$0.00"
                                    ${thriftNA ? 'disabled' : ''}
                                    onchange="updatePrice('${book.sku}', 'thrift', this.value)">
                         </div>
                         <div class="savings-display">
                             <div class="label">Savings</div>
                             <div class="amount ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}">
-                                ${savings === null ? '—' : (savings >= 0 ? '+' : '') + '$' + savings.toFixed(2)}
+                                ${savings === null ? '—' : (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2)}
                             </div>
                         </div>
                     </div>
@@ -1117,7 +1477,7 @@
                         <div class="url-row">
                             <label>HPB:</label>
                             <input type="url" class="url-input hpb-url"
-                                   placeholder="Paste HPB product URL here..."
+                                   placeholder="Paste HPB link here..."
                                    value="${prices.hpbUrl || ''}"
                                    ${hpbNA ? 'disabled' : ''}
                                    onchange="updateUrl('${book.sku}', 'hpbUrl', this.value)">
@@ -1134,7 +1494,7 @@
                         <div class="url-row">
                             <label>Thrift:</label>
                             <input type="url" class="url-input thrift-url"
-                                   placeholder="Paste ThriftBooks product URL here..."
+                                   placeholder="Paste ThriftBooks link here..."
                                    value="${prices.thriftUrl || ''}"
                                    ${thriftNA ? 'disabled' : ''}
                                    onchange="updateUrl('${book.sku}', 'thriftUrl', this.value)">
@@ -1210,8 +1570,9 @@
             const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
             if (card) {
                 const book = bookData.find(b => b.sku === sku);
+                const index = bookData.indexOf(book);
                 const newCard = document.createElement('div');
-                newCard.innerHTML = renderBookCard(book);
+                newCard.innerHTML = renderBookCard(book, 0);
                 card.replaceWith(newCard.firstElementChild);
             }
         }
@@ -1226,7 +1587,7 @@
 
                 const savingsEl = card.querySelector('.savings-display .amount');
                 savingsEl.className = `amount ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}`;
-                savingsEl.textContent = savings === null ? '—' : (savings >= 0 ? '+' : '') + '$' + savings.toFixed(2);
+                savingsEl.textContent = savings === null ? '—' : (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2);
 
                 card.classList.toggle('has-savings', savings !== null && savings > 0);
             }
@@ -1247,15 +1608,15 @@
                 }
             });
 
-            document.getElementById('totalSonlight').textContent = '$' + totalSonlight.toFixed(2);
-            document.getElementById('totalHPB').textContent = pricedCount > 0 ? '$' + totalBest.toFixed(2) : '$0.00';
+            document.getElementById('totalSonlight').textContent = '$' + totalSonlight.toFixed(0);
+            document.getElementById('totalHPB').textContent = pricedCount > 0 ? '$' + totalBest.toFixed(0) : '$0';
 
             const savings = pricedCount > 0 ? (totalSonlight - totalBest) : 0;
             const savingsEl = document.getElementById('totalSavings');
-            savingsEl.textContent = (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2);
-            savingsEl.style.color = savings >= 0 ? '#16a34a' : '#dc2626';
+            savingsEl.textContent = (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(0);
+            savingsEl.style.color = savings >= 0 ? 'var(--sage)' : 'var(--rose-dark)';
 
-            document.getElementById('progress').textContent = `${pricedCount} / ${bookData.length}`;
+            document.getElementById('progress').textContent = `${pricedCount}/${bookData.length}`;
         }
 
         function renderFilters() {
@@ -1294,7 +1655,7 @@
 
         function renderBooks() {
             const grid = document.getElementById('bookGrid');
-            grid.innerHTML = bookData.map(renderBookCard).join('');
+            grid.innerHTML = bookData.map((book, i) => renderBookCard(book, i)).join('');
         }
 
         function exportToCSV() {
@@ -1346,7 +1707,7 @@
         }
 
         function clearAllPrices() {
-            if (confirm('Are you sure you want to clear all entered prices for this curriculum? This cannot be undone.')) {
+            if (confirm('Clear all entered prices for this curriculum? This cannot be undone.')) {
                 savedPrices = {};
                 saveCurrentPrices(savedPrices);
                 renderBooks();
@@ -1356,6 +1717,7 @@
 
         // ==================== Initialize ====================
         renderSavedCurricula();
+        lucide.createIcons();
     </script>
 </body>
 </html>
