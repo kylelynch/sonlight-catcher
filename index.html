@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
     <style>
         :root {
             /* Soft, warm palette */
@@ -1607,7 +1608,7 @@
                 <div class="table-view" id="tableView"></div>
 
                 <div class="export-section">
-                    <button class="export-btn" onclick="exportToCSV()"><i data-lucide="download" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 8px;"></i>Export to CSV</button>
+                    <button class="export-btn" onclick="exportToXLSX()"><i data-lucide="download" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 8px;"></i>Export to Excel</button>
                     <button class="clear-btn" onclick="clearAllPrices()">Clear Prices</button>
                 </div>
             </main>
@@ -2604,57 +2605,259 @@
             grid.innerHTML = bookData.map((book, i) => renderBookCard(book, i)).join('');
         }
 
-        function exportToCSV() {
+        function exportToXLSX() {
             const curricula = loadCurricula();
             const curriculum = curricula[currentCurriculumId];
             const name = curriculum?.name || 'curriculum';
 
-            // Build headers dynamically based on stores
-            const storeHeaders = Object.keys(STORES).flatMap(storeKey => {
-                const store = STORES[storeKey];
-                return [`${store.shortName} Price`, `${store.shortName} URL`, `${store.shortName} N/A`];
-            });
+            // Define styles
+            const styles = {
+                header: {
+                    font: { bold: true, color: { rgb: "FFFFFF" } },
+                    fill: { fgColor: { rgb: "2D2D2D" } },
+                    alignment: { horizontal: "center", vertical: "center" }
+                },
+                headerSonlight: {
+                    font: { bold: true, color: { rgb: "FFFFFF" } },
+                    fill: { fgColor: { rgb: "2D2D2D" } },
+                    alignment: { horizontal: "center", vertical: "center" }
+                },
+                headerStore: {
+                    hpb: {
+                        font: { bold: true, color: { rgb: "FFFFFF" } },
+                        fill: { fgColor: { rgb: "2D2D2D" } },
+                        alignment: { horizontal: "center", vertical: "center" }
+                    },
+                    thrift: {
+                        font: { bold: true, color: { rgb: "FFFFFF" } },
+                        fill: { fgColor: { rgb: "2D2D2D" } },
+                        alignment: { horizontal: "center", vertical: "center" }
+                    },
+                    amazon: {
+                        font: { bold: true, color: { rgb: "FFFFFF" } },
+                        fill: { fgColor: { rgb: "2D2D2D" } },
+                        alignment: { horizontal: "center", vertical: "center" }
+                    }
+                },
+                sonlightPrice: {
+                    font: { color: { rgb: "A86B70" }, bold: true },
+                    numFmt: "$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                storePrice: {
+                    numFmt: "$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                storePriceLink: {
+                    font: { color: { rgb: "0066CC" }, underline: true },
+                    numFmt: "$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                storePriceBest: {
+                    font: { bold: true, color: { rgb: "FFFFFF" } },
+                    fill: { fgColor: { rgb: "9BB5A0" } },
+                    numFmt: "$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                storePriceBestLink: {
+                    font: { bold: true, color: { rgb: "FFFFFF" }, underline: true },
+                    fill: { fgColor: { rgb: "9BB5A0" } },
+                    numFmt: "$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                storeNA: {
+                    font: { color: { rgb: "999999" }, italic: true },
+                    alignment: { horizontal: "center" }
+                },
+                bestPrice: {
+                    font: { bold: true, color: { rgb: "5A7A60" } },
+                    numFmt: "$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                savingsPositive: {
+                    font: { bold: true, color: { rgb: "5A7A60" } },
+                    numFmt: "+$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                savingsNegative: {
+                    font: { bold: true, color: { rgb: "A86B70" } },
+                    numFmt: "-$#,##0.00",
+                    alignment: { horizontal: "right" }
+                },
+                savingsNeutral: {
+                    font: { color: { rgb: "999999" } },
+                    alignment: { horizontal: "center" }
+                },
+                bookTitle: {
+                    alignment: { horizontal: "left" }
+                },
+                bookTitleLink: {
+                    font: { color: { rgb: "0066CC" }, underline: true },
+                    alignment: { horizontal: "left" }
+                }
+            };
 
-            const headers = ['SKU', 'Title', 'Category', 'Sonlight Price', ...storeHeaders, 'Best Price', 'Savings', 'Sonlight URL'];
+            // Build headers: Book, SKU, Category, Sonlight, HPB, TB, AMZ, Best, Savings
+            const storeKeys = Object.keys(STORES);
+            const headers = ['Book', 'SKU', 'Category', 'Sonlight', ...storeKeys.map(k => STORES[k].shortName), 'Best', 'Savings'];
 
-            const rows = bookData.map(book => {
+            // Create worksheet data array
+            const wsData = [headers];
+
+            // Add data rows
+            bookData.forEach(book => {
                 const prices = savedPrices[book.sku] || {};
                 const bestPrice = getBestPrice(book.sku);
+                const bestStore = getBestStore(book.sku);
                 const sonlightPrice = parseFloat(book.price) || 0;
-                const savings = bestPrice !== null ? (sonlightPrice - bestPrice).toFixed(2) : '';
+                const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
 
-                // Build store columns dynamically
-                const storeColumns = Object.keys(STORES).flatMap(storeKey => {
+                const row = [
+                    book.title || '',
+                    book.sku || '',
+                    book.group || '',
+                    sonlightPrice
+                ];
+
+                // Add store prices
+                storeKeys.forEach(storeKey => {
                     const store = STORES[storeKey];
-                    return [
-                        prices[store.priceKey] || '',
-                        `"${prices[store.urlKey] || ''}"`,
-                        prices[store.naKey] ? 'Yes' : ''
-                    ];
+                    const isNA = prices[store.naKey] || false;
+                    const price = prices[store.priceKey];
+
+                    if (isNA) {
+                        row.push('N/A');
+                    } else if (price) {
+                        row.push(parseFloat(price));
+                    } else {
+                        row.push('');
+                    }
                 });
 
-                return [
-                    book.sku,
-                    `"${(book.title || '').replace(/"/g, '""')}"`,
-                    book.group,
-                    sonlightPrice.toFixed(2),
-                    ...storeColumns,
-                    bestPrice !== null ? bestPrice.toFixed(2) : '',
-                    savings,
-                    book.productUrl || ''
-                ].join(',');
+                // Add best price and savings
+                row.push(bestPrice !== null ? bestPrice : '');
+                row.push(savings !== null ? savings : '');
+
+                wsData.push(row);
             });
 
-            const csv = [headers.join(','), ...rows].join('\n');
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
+            // Create worksheet
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
 
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${name.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-comparison.csv`;
-            a.click();
+            // Apply column widths
+            ws['!cols'] = [
+                { wch: 40 },  // Book title
+                { wch: 12 },  // SKU
+                { wch: 15 },  // Category
+                { wch: 10 },  // Sonlight
+                ...storeKeys.map(() => ({ wch: 10 })),  // Store columns
+                { wch: 10 },  // Best
+                { wch: 10 }   // Savings
+            ];
 
-            URL.revokeObjectURL(url);
+            // Apply header styles
+            const numCols = headers.length;
+            for (let col = 0; col < numCols; col++) {
+                const cellRef = XLSX.utils.encode_cell({ r: 0, c: col });
+                if (!ws[cellRef]) continue;
+
+                if (col === 3) {
+                    // Sonlight header
+                    ws[cellRef].s = styles.headerSonlight;
+                } else if (col >= 4 && col < 4 + storeKeys.length) {
+                    // Store headers
+                    const storeKey = storeKeys[col - 4];
+                    ws[cellRef].s = styles.headerStore[storeKey];
+                } else {
+                    ws[cellRef].s = styles.header;
+                }
+            }
+
+            // Apply data cell styles and hyperlinks
+            bookData.forEach((book, rowIndex) => {
+                const row = rowIndex + 1; // +1 for header row
+                const prices = savedPrices[book.sku] || {};
+                const bestPrice = getBestPrice(book.sku);
+                const bestStore = getBestStore(book.sku);
+                const sonlightPrice = parseFloat(book.price) || 0;
+                const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
+
+                // Book title with link to Sonlight
+                const titleCell = XLSX.utils.encode_cell({ r: row, c: 0 });
+                if (ws[titleCell]) {
+                    if (book.productUrl) {
+                        ws[titleCell].l = { Target: book.productUrl, Tooltip: "View on Sonlight" };
+                        ws[titleCell].s = styles.bookTitleLink;
+                    } else {
+                        ws[titleCell].s = styles.bookTitle;
+                    }
+                }
+
+                // Sonlight price
+                const sonlightCell = XLSX.utils.encode_cell({ r: row, c: 3 });
+                if (ws[sonlightCell]) {
+                    ws[sonlightCell].s = styles.sonlightPrice;
+                }
+
+                // Store price cells
+                storeKeys.forEach((storeKey, storeIndex) => {
+                    const col = 4 + storeIndex;
+                    const cellRef = XLSX.utils.encode_cell({ r: row, c: col });
+                    if (!ws[cellRef]) return;
+
+                    const store = STORES[storeKey];
+                    const isNA = prices[store.naKey] || false;
+                    const price = prices[store.priceKey];
+                    const url = prices[store.urlKey];
+                    const isBest = bestStore === storeKey && price;
+
+                    if (isNA) {
+                        ws[cellRef].s = styles.storeNA;
+                    } else if (isBest) {
+                        if (url) {
+                            ws[cellRef].l = { Target: url, Tooltip: `View on ${store.name}` };
+                            ws[cellRef].s = styles.storePriceBestLink;
+                        } else {
+                            ws[cellRef].s = styles.storePriceBest;
+                        }
+                    } else if (price) {
+                        if (url) {
+                            ws[cellRef].l = { Target: url, Tooltip: `View on ${store.name}` };
+                            ws[cellRef].s = styles.storePriceLink;
+                        } else {
+                            ws[cellRef].s = styles.storePrice;
+                        }
+                    }
+                });
+
+                // Best price cell
+                const bestCol = 4 + storeKeys.length;
+                const bestCell = XLSX.utils.encode_cell({ r: row, c: bestCol });
+                if (ws[bestCell] && bestPrice !== null) {
+                    ws[bestCell].s = styles.bestPrice;
+                }
+
+                // Savings cell
+                const savingsCol = 5 + storeKeys.length;
+                const savingsCell = XLSX.utils.encode_cell({ r: row, c: savingsCol });
+                if (ws[savingsCell]) {
+                    if (savings === null) {
+                        ws[savingsCell].s = styles.savingsNeutral;
+                    } else if (savings >= 0) {
+                        ws[savingsCell].s = styles.savingsPositive;
+                    } else {
+                        ws[savingsCell].s = styles.savingsNegative;
+                    }
+                }
+            });
+
+            // Create workbook and add worksheet
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Book Comparison');
+
+            // Generate and download file
+            const filename = `${name.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-comparison.xlsx`;
+            XLSX.writeFile(wb, filename);
         }
 
         function clearAllPrices() {
