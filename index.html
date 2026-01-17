@@ -478,6 +478,51 @@
             stroke-width: 1.5;
         }
 
+        /* ==================== Import Tabs ==================== */
+        .import-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .import-tab {
+            flex: 1;
+            padding: 14px 20px;
+            background: var(--cream);
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: var(--text-medium);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .import-tab:hover {
+            border-color: var(--sage);
+            color: var(--sage-dark);
+        }
+
+        .import-tab.active {
+            background: var(--sage);
+            color: var(--white);
+            border-color: var(--sage);
+        }
+
+        .import-method {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* ==================== Summary Bar ==================== */
         .summary-bar {
             background: var(--white);
@@ -1079,33 +1124,84 @@
                 <h2>Welcome! Let's Find Some Deals</h2>
                 <p>Paste your curriculum data below to start comparing book prices across Half Price Books and ThriftBooks.</p>
 
-                <div class="steps-container">
-                    <h3>How to get your curriculum data</h3>
-                    <ol>
-                        <li>Go to your Sonlight curriculum page (e.g., <code>sonlight.com/products/intro-to-world-history...</code>)</li>
-                        <li>Open browser DevTools — press <code>F12</code> or right-click → Inspect</li>
-                        <li>Click the <code>Network</code> tab, then refresh the page</li>
-                        <li>Type <code>graphql</code> in the filter box to find the request</li>
-                        <li>Click the request, go to <code>Response</code> tab, copy everything</li>
-                    </ol>
+                <!-- Tab Selector for Import Method -->
+                <div class="import-tabs">
+                    <button class="import-tab active" data-tab="url" onclick="switchImportTab('url')">
+                        <i data-lucide="link" style="width: 16px; height: 16px;"></i>
+                        From URL
+                    </button>
+                    <button class="import-tab" data-tab="json" onclick="switchImportTab('json')">
+                        <i data-lucide="code" style="width: 16px; height: 16px;"></i>
+                        Paste JSON
+                    </button>
                 </div>
 
-                <input type="text" class="curriculum-name-input" id="curriculumName"
-                       placeholder="Give this curriculum a name (e.g., 'History Year 2')">
-
-                <div class="import-error" id="importError"></div>
-                <div class="import-progress" id="importProgress">
-                    <span id="progressText">Fetching prices from Sonlight...</span>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+                <!-- URL Import Section -->
+                <div class="import-method" id="urlImportMethod">
+                    <div class="steps-container">
+                        <h3>Easy Method — Just paste the URL</h3>
+                        <ol>
+                            <li>Go to any Sonlight curriculum page</li>
+                            <li>Copy the URL from your browser's address bar</li>
+                            <li>Paste it below and click Load</li>
+                        </ol>
                     </div>
+
+                    <input type="text" class="curriculum-name-input" id="curriculumNameUrl"
+                           placeholder="Give this curriculum a name (e.g., 'History Year 2')">
+
+                    <input type="url" class="curriculum-name-input" id="productUrlInput"
+                           placeholder="https://www.sonlight.com/products/intro-to-american-history-year-1-of-2"
+                           style="margin-bottom: 15px;">
+
+                    <div class="variant-selector-container" id="variantSelectorContainer" style="display: none;">
+                        <label for="variantSelect" style="font-weight: 600; color: var(--text-dark); margin-bottom: 8px; display: block;">Select Package Option</label>
+                        <select id="variantSelect" class="curriculum-name-input" style="cursor: pointer;"></select>
+                    </div>
+
+                    <div class="import-error" id="importErrorUrl"></div>
+                    <div class="import-progress" id="importProgressUrl">
+                        <span id="progressTextUrl">Fetching curriculum data...</span>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="progressFillUrl" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <button class="import-btn" id="importBtnUrl" onclick="importFromUrl()">
+                        Load Curriculum
+                    </button>
                 </div>
 
-                <textarea class="json-input" id="jsonInput" placeholder="Paste the GraphQL JSON response here..."></textarea>
+                <!-- JSON Import Section (Hidden by default) -->
+                <div class="import-method" id="jsonImportMethod" style="display: none;">
+                    <div class="steps-container">
+                        <h3>Advanced Method — Paste GraphQL Response</h3>
+                        <ol>
+                            <li>Go to your Sonlight curriculum page</li>
+                            <li>Open browser DevTools — press <code>F12</code> or right-click → Inspect</li>
+                            <li>Click the <code>Network</code> tab, then refresh the page</li>
+                            <li>Type <code>graphql</code> in the filter box to find the request</li>
+                            <li>Click the request, go to <code>Response</code> tab, copy everything</li>
+                        </ol>
+                    </div>
 
-                <button class="import-btn" id="importBtn" onclick="importCurriculum()">
-                    Import & Fetch Prices
-                </button>
+                    <input type="text" class="curriculum-name-input" id="curriculumName"
+                           placeholder="Give this curriculum a name (e.g., 'History Year 2')">
+
+                    <div class="import-error" id="importError"></div>
+                    <div class="import-progress" id="importProgress">
+                        <span id="progressText">Fetching prices from Sonlight...</span>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <textarea class="json-input" id="jsonInput" placeholder="Paste the GraphQL JSON response here..."></textarea>
+
+                    <button class="import-btn" id="importBtn" onclick="importCurriculum()">
+                        Import & Fetch Prices
+                    </button>
+                </div>
 
                 <div class="saved-curricula" id="savedCurricula">
                     <h3>Your Saved Curricula</h3>
@@ -1195,7 +1291,311 @@
             savePrices(allPrices);
         }
 
-        // ==================== Import Functions ====================
+        // ==================== Shopify API Configuration ====================
+        const SHOPIFY_DOMAIN = 'sonlight-books.myshopify.com';
+        const STOREFRONT_ACCESS_TOKEN = 'b8e19fe1028dff73b2ff075cc934d603';
+        const API_VERSION = '2023-10';
+
+        // Store for URL-based import
+        let urlProductData = null;
+        let urlVariantBundles = {};
+
+        // ==================== Import Tab Switching ====================
+
+        function switchImportTab(tab) {
+            document.querySelectorAll('.import-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.import-tab[data-tab="${tab}"]`).classList.add('active');
+
+            document.getElementById('urlImportMethod').style.display = tab === 'url' ? 'block' : 'none';
+            document.getElementById('jsonImportMethod').style.display = tab === 'json' ? 'block' : 'none';
+
+            lucide.createIcons();
+        }
+
+        // ==================== URL-Based Import Functions ====================
+
+        function extractHandle(url) {
+            const match = url.match(/\/products\/([^/?#]+)/);
+            return match ? match[1] : null;
+        }
+
+        async function graphqlFetch(query) {
+            const response = await fetch(`https://${SHOPIFY_DOMAIN}/api/${API_VERSION}/graphql.json`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Shopify-Storefront-Access-Token': STOREFRONT_ACCESS_TOKEN
+                },
+                body: JSON.stringify({ query })
+            });
+            return response.json();
+        }
+
+        async function fetchProductBundles(handle) {
+            const query = `{
+                productByHandle(handle: "${handle}") {
+                    id
+                    title
+                    variants(first: 20) {
+                        edges {
+                            node {
+                                id
+                                title
+                                metafield(namespace: "product_bundle_definition", key: "bundled_items") {
+                                    value
+                                }
+                            }
+                        }
+                    }
+                }
+            }`;
+            return graphqlFetch(query);
+        }
+
+        async function fetchVariantDetails(variantIds) {
+            const chunks = [];
+            for (let i = 0; i < variantIds.length; i += 50) {
+                chunks.push(variantIds.slice(i, i + 50));
+            }
+
+            const allNodes = [];
+            for (const chunk of chunks) {
+                const idsString = chunk.map(id => `"${id}"`).join(', ');
+                const query = `{
+                    nodes(ids: [${idsString}]) {
+                        ... on ProductVariant {
+                            id
+                            title
+                            sku
+                            image {
+                                url
+                                altText
+                            }
+                            quantityAvailable
+                            product {
+                                id
+                                title
+                                handle
+                                productType
+                                groupMetafield: metafield(namespace: "custom", key: "included_item_group") {
+                                    id
+                                    namespace
+                                    key
+                                    value
+                                }
+                                descriptionMetafield: metafield(namespace: "custom", key: "short_description") {
+                                    id
+                                    namespace
+                                    key
+                                    value
+                                }
+                            }
+                        }
+                    }
+                }`;
+                const result = await graphqlFetch(query);
+                if (result.data && result.data.nodes) {
+                    allNodes.push(...result.data.nodes.filter(n => n && n.id));
+                }
+            }
+            return allNodes;
+        }
+
+        async function importFromUrl() {
+            const urlInput = document.getElementById('productUrlInput').value.trim();
+            const nameInput = document.getElementById('curriculumNameUrl').value.trim();
+            const errorEl = document.getElementById('importErrorUrl');
+            const progressEl = document.getElementById('importProgressUrl');
+            const progressText = document.getElementById('progressTextUrl');
+            const progressFill = document.getElementById('progressFillUrl');
+            const importBtn = document.getElementById('importBtnUrl');
+            const variantContainer = document.getElementById('variantSelectorContainer');
+            const variantSelect = document.getElementById('variantSelect');
+
+            errorEl.style.display = 'none';
+            progressEl.style.display = 'none';
+
+            if (!urlInput) {
+                errorEl.textContent = 'Please enter a Sonlight product URL.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            const handle = extractHandle(urlInput);
+            if (!handle) {
+                errorEl.textContent = 'Invalid URL. Please enter a valid Sonlight product URL (e.g., https://www.sonlight.com/products/intro-to-american-history-year-1-of-2)';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (!nameInput) {
+                errorEl.textContent = 'Please enter a name for this curriculum.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            progressEl.style.display = 'block';
+            importBtn.disabled = true;
+            progressText.textContent = 'Fetching curriculum data...';
+            progressFill.style.width = '10%';
+
+            try {
+                // Fetch product data
+                const productResult = await fetchProductBundles(handle);
+                progressFill.style.width = '30%';
+
+                if (!productResult.data || !productResult.data.productByHandle) {
+                    throw new Error('Product not found. Please check the URL and try again.');
+                }
+
+                urlProductData = productResult.data.productByHandle;
+
+                // Parse variant bundles
+                urlVariantBundles = {};
+                variantSelect.innerHTML = '';
+
+                urlProductData.variants.edges.forEach(edge => {
+                    const variant = edge.node;
+                    const metafield = variant.metafield;
+
+                    if (metafield && metafield.value) {
+                        try {
+                            const bundledIds = JSON.parse(metafield.value);
+                            urlVariantBundles[variant.id] = bundledIds;
+
+                            const option = document.createElement('option');
+                            option.value = variant.id;
+                            option.textContent = variant.title;
+                            variantSelect.appendChild(option);
+                        } catch (e) {
+                            console.error('Failed to parse bundle for variant:', variant.id, e);
+                        }
+                    }
+                });
+
+                if (Object.keys(urlVariantBundles).length === 0) {
+                    throw new Error('This product does not have any bundled items configured.');
+                }
+
+                // Show variant selector if there are multiple options
+                if (Object.keys(urlVariantBundles).length > 1) {
+                    variantContainer.style.display = 'block';
+                    progressEl.style.display = 'none';
+                    importBtn.disabled = false;
+                    importBtn.textContent = 'Import Selected Package';
+                    importBtn.onclick = () => importSelectedVariant(nameInput);
+                    return;
+                }
+
+                // Only one variant, import it directly
+                await importVariantDirectly(Object.keys(urlVariantBundles)[0], nameInput);
+
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+                progressEl.style.display = 'none';
+                importBtn.disabled = false;
+            }
+        }
+
+        async function importSelectedVariant(name) {
+            const variantId = document.getElementById('variantSelect').value;
+            await importVariantDirectly(variantId, name);
+        }
+
+        async function importVariantDirectly(variantId, name) {
+            const errorEl = document.getElementById('importErrorUrl');
+            const progressEl = document.getElementById('importProgressUrl');
+            const progressText = document.getElementById('progressTextUrl');
+            const progressFill = document.getElementById('progressFillUrl');
+            const importBtn = document.getElementById('importBtnUrl');
+
+            errorEl.style.display = 'none';
+            progressEl.style.display = 'block';
+            importBtn.disabled = true;
+
+            try {
+                const bundledIds = urlVariantBundles[variantId];
+                progressText.textContent = `Fetching ${bundledIds.length} items...`;
+                progressFill.style.width = '40%';
+
+                // Fetch all variant details
+                const nodes = await fetchVariantDetails(bundledIds);
+                progressFill.style.width = '70%';
+
+                // Convert to the app's expected format
+                const items = nodes.map(node => {
+                    const varId = node.id?.replace('gid://shopify/ProductVariant/', '') || null;
+                    return {
+                        variantId: varId,
+                        sku: node.sku,
+                        title: node.product?.title,
+                        handle: node.product?.handle,
+                        productType: node.product?.productType,
+                        group: node.product?.groupMetafield?.value || 'Other',
+                        description: node.product?.descriptionMetafield?.value || '',
+                        imageUrl: node.image?.url || null,
+                        productUrl: node.product?.handle
+                            ? `https://www.sonlight.com/products/${node.product.handle}?variant=${varId}`
+                            : null,
+                        price: null
+                    };
+                });
+
+                progressText.textContent = 'Fetching Sonlight prices...';
+                progressFill.style.width = '75%';
+
+                // Fetch prices for each item
+                for (let i = 0; i < items.length; i++) {
+                    const item = items[i];
+                    const shortTitle = item.title?.substring(0, 25) || 'Unknown';
+                    progressText.textContent = `Fetching prices... ${i + 1}/${items.length} — ${shortTitle}...`;
+                    progressFill.style.width = `${75 + ((i + 1) / items.length) * 20}%`;
+
+                    if (item.handle) {
+                        item.price = await fetchProductPrice(item.handle);
+                    }
+
+                    if (i < items.length - 1) {
+                        await new Promise(r => setTimeout(r, 100));
+                    }
+                }
+
+                progressFill.style.width = '100%';
+                progressText.textContent = 'Saving curriculum...';
+
+                // Save curriculum
+                const curriculumId = 'curriculum_' + Date.now();
+                const curricula = loadCurricula();
+                curricula[curriculumId] = {
+                    id: curriculumId,
+                    name: name,
+                    books: items,
+                    sourceUrl: document.getElementById('productUrlInput').value.trim(),
+                    createdAt: new Date().toISOString()
+                };
+                saveCurricula(curricula);
+
+                // Reset form
+                document.getElementById('productUrlInput').value = '';
+                document.getElementById('curriculumNameUrl').value = '';
+                document.getElementById('variantSelectorContainer').style.display = 'none';
+                importBtn.textContent = 'Load Curriculum';
+                importBtn.onclick = importFromUrl;
+
+                // Load the curriculum
+                loadCurriculumById(curriculumId);
+
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+            } finally {
+                progressEl.style.display = 'none';
+                importBtn.disabled = false;
+            }
+        }
+
+        // ==================== JSON Import Functions ====================
 
         function parseGraphQLResponse(json) {
             const nodes = json?.data?.nodes || [];
