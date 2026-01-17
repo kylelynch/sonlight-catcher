@@ -812,197 +812,548 @@
             transform: translateY(-2px);
         }
 
-        /* ==================== Price Inputs ==================== */
-        .price-inputs {
+        /* ==================== Store Pills Section ==================== */
+        .store-pills-section {
             background: var(--cream);
             padding: 16px 22px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
             border-top: 2px solid var(--cream-dark);
-        }
-
-        .price-input-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .price-input-group label {
-            font-size: 0.8em;
-            color: var(--text-light);
+        .store-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: var(--radius-xl);
+            font-size: 0.85em;
             font-weight: 700;
-        }
-
-        .price-input {
-            width: 85px;
-            padding: 10px 12px;
-            border: 2px solid var(--cream-dark);
-            border-radius: var(--radius-sm);
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.95em;
-            font-weight: 600;
-            text-align: right;
+            cursor: pointer;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
         }
 
-        .price-input:focus {
-            outline: none;
-            border-color: var(--sage);
-            box-shadow: 0 0 0 3px rgba(155, 181, 160, 0.15);
-        }
-
-        .price-input.hpb-input {
+        .store-pill.hpb {
             background: var(--terracotta-light);
-            border-color: var(--terracotta-light);
+            color: var(--terracotta);
         }
 
-        .price-input.hpb-input:focus {
-            border-color: var(--terracotta);
+        .store-pill.hpb:hover, .store-pill.hpb.active {
+            background: var(--terracotta);
+            color: var(--white);
         }
 
-        .price-input.thrift-input {
+        .store-pill.thrift {
             background: var(--sage-light);
-            border-color: var(--sage-light);
+            color: var(--sage-dark);
         }
 
-        .price-input.thrift-input:focus {
-            border-color: var(--sage);
+        .store-pill.thrift:hover, .store-pill.thrift.active {
+            background: var(--sage);
+            color: var(--white);
         }
 
-        .price-input:disabled {
-            background: var(--cream-dark);
-            color: var(--text-light);
-            border-color: var(--cream-dark);
+        .store-pill.amazon {
+            background: var(--lavender-light);
+            color: var(--lavender);
         }
 
-        .savings-display {
+        .store-pill.amazon:hover, .store-pill.amazon.active {
+            background: var(--lavender);
+            color: var(--white);
+        }
+
+        .store-pill.na {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .store-pill .pill-label {
+            font-size: 0.75em;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .store-pill .pill-price {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .store-pill.best-price::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 12px;
+            height: 12px;
+            background: var(--sage);
+            border-radius: 50%;
+            border: 2px solid var(--white);
+        }
+
+        .card-savings {
             margin-left: auto;
             text-align: right;
             background: var(--white);
-            padding: 10px 18px;
+            padding: 8px 14px;
             border-radius: var(--radius-sm);
         }
 
-        .savings-display .label {
-            font-size: 0.7em;
+        .card-savings .label {
+            font-size: 0.65em;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--text-light);
             font-weight: 700;
         }
 
-        .savings-display .amount {
+        .card-savings .amount {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
-        .savings-display .amount.positive { color: var(--sage); }
-        .savings-display .amount.negative { color: var(--rose-dark); }
-        .savings-display .amount.neutral { color: var(--text-light); }
+        .card-savings .amount.positive { color: var(--sage); }
+        .card-savings .amount.negative { color: var(--rose-dark); }
+        .card-savings .amount.neutral { color: var(--text-light); }
 
-        /* ==================== URL Section ==================== */
-        .url-section {
+        /* ==================== Store Popover ==================== */
+        .popover-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .popover-overlay.active {
+            display: flex;
+        }
+
+        .store-popover {
             background: var(--white);
-            padding: 14px 22px;
-            border-top: 1px dashed var(--cream-dark);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--shadow-lifted);
+            animation: slideUp 0.3s ease-out;
         }
 
-        .url-row {
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popover-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .popover-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            color: var(--text-dark);
+        }
+
+        .popover-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--cream);
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        .url-row:last-child {
-            margin-bottom: 0;
+        .popover-close:hover {
+            background: var(--rose-light);
         }
 
-        .url-row label {
-            font-size: 0.75em;
-            color: var(--text-light);
+        .popover-body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .popover-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .popover-field label {
+            font-size: 0.8em;
             font-weight: 700;
-            width: 50px;
-            flex-shrink: 0;
+            color: var(--text-medium);
         }
 
-        .url-input {
-            flex: 1;
-            padding: 8px 12px;
+        .popover-input {
+            padding: 12px 16px;
             border: 2px solid var(--cream-dark);
             border-radius: var(--radius-sm);
             font-family: 'Nunito', sans-serif;
-            font-size: 0.8em;
-            min-width: 0;
+            font-size: 1em;
             transition: all 0.3s ease;
         }
 
-        .url-input:focus {
+        .popover-input:focus {
             outline: none;
             border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(155, 181, 160, 0.15);
         }
 
-        .url-input.hpb-url {
-            background: rgba(212, 165, 116, 0.1);
+        .popover-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        .url-input.thrift-url {
-            background: rgba(155, 181, 160, 0.1);
+        .popover-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--radius-xl);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
         }
 
-        .url-input:disabled {
+        .popover-btn.primary {
+            background: var(--sage);
+            color: var(--white);
+        }
+
+        .popover-btn.primary:hover {
+            background: var(--sage-dark);
+        }
+
+        .popover-btn.secondary {
+            background: var(--cream);
+            color: var(--text-medium);
+        }
+
+        .popover-btn.secondary:hover {
             background: var(--cream-dark);
-            color: var(--text-light);
         }
 
-        .visit-link {
-            padding: 6px 12px;
+        .popover-btn.danger {
+            background: var(--rose-light);
+            color: var(--rose-dark);
+        }
+
+        .popover-btn.danger:hover {
+            background: var(--rose);
+            color: var(--white);
+        }
+
+        .popover-search-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
             background: var(--cream);
             color: var(--text-medium);
             border-radius: var(--radius-sm);
-            font-size: 0.75em;
             text-decoration: none;
+            font-size: 0.85em;
             font-weight: 600;
             transition: all 0.3s ease;
-            white-space: nowrap;
         }
 
-        .visit-link:hover {
+        .popover-search-link:hover {
             background: var(--sage-light);
             color: var(--sage-dark);
         }
 
-        .visit-link.disabled {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .na-checkbox {
+        .popover-na-row {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.75em;
-            color: var(--text-light);
-            cursor: pointer;
-            font-weight: 600;
-            white-space: nowrap;
-            padding: 6px 10px;
+            justify-content: space-between;
+            padding: 12px 16px;
             background: var(--cream);
             border-radius: var(--radius-sm);
-            transition: all 0.3s ease;
         }
 
-        .na-checkbox:hover {
-            background: var(--rose-light);
+        .popover-na-row label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--text-medium);
         }
 
-        .na-checkbox input {
+        .popover-na-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
             cursor: pointer;
             accent-color: var(--rose);
         }
+
+        /* ==================== View Toggle ==================== */
+        .view-toggle {
+            display: flex;
+            gap: 5px;
+            background: var(--cream);
+            padding: 5px;
+            border-radius: var(--radius-xl);
+        }
+
+        .view-toggle-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-medium);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .view-toggle-btn:hover {
+            color: var(--sage-dark);
+        }
+
+        .view-toggle-btn.active {
+            background: var(--white);
+            color: var(--sage-dark);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .view-toggle-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ==================== Table View ==================== */
+        .table-view {
+            display: none;
+            overflow-x: auto;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .table-view.active {
+            display: block;
+        }
+
+        .book-grid.hidden {
+            display: none;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .comparison-table th {
+            background: var(--cream);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--cream-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .comparison-table th.store-col {
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .comparison-table th.store-col.hpb { background: var(--terracotta-light); }
+        .comparison-table th.store-col.thrift { background: var(--sage-light); }
+        .comparison-table th.store-col.amazon { background: var(--lavender-light); }
+
+        .comparison-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--cream-dark);
+            vertical-align: middle;
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--cream);
+        }
+
+        .comparison-table tr.has-savings td {
+            background: rgba(155, 181, 160, 0.08);
+        }
+
+        .comparison-table tr.has-savings:hover td {
+            background: rgba(155, 181, 160, 0.15);
+        }
+
+        .table-book-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 250px;
+        }
+
+        .table-book-image {
+            width: 40px;
+            height: 55px;
+            object-fit: contain;
+            border-radius: 4px;
+            background: var(--cream);
+            flex-shrink: 0;
+        }
+
+        .table-book-details {
+            min-width: 0;
+        }
+
+        .table-book-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .table-book-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .table-book-title a:hover {
+            color: var(--sage-dark);
+        }
+
+        .table-book-meta {
+            font-size: 0.8em;
+            color: var(--text-light);
+        }
+
+        .table-sonlight-price {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--rose-dark);
+            white-space: nowrap;
+        }
+
+        .table-store-cell {
+            text-align: center;
+        }
+
+        .table-price-btn {
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            min-width: 70px;
+        }
+
+        .table-price-btn.hpb {
+            background: var(--terracotta-light);
+            color: var(--terracotta);
+        }
+
+        .table-price-btn.hpb:hover {
+            background: var(--terracotta);
+            color: var(--white);
+        }
+
+        .table-price-btn.thrift {
+            background: var(--sage-light);
+            color: var(--sage-dark);
+        }
+
+        .table-price-btn.thrift:hover {
+            background: var(--sage);
+            color: var(--white);
+        }
+
+        .table-price-btn.amazon {
+            background: var(--lavender-light);
+            color: var(--lavender);
+        }
+
+        .table-price-btn.amazon:hover {
+            background: var(--lavender);
+            color: var(--white);
+        }
+
+        .table-price-btn.na {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .table-price-btn.has-price {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .table-price-btn.best-price {
+            position: relative;
+        }
+
+        .table-price-btn.best-price::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 10px;
+            height: 10px;
+            background: var(--sage);
+            border-radius: 50%;
+            border: 2px solid var(--white);
+        }
+
+        .table-best-price {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--sage-dark);
+            white-space: nowrap;
+        }
+
+        .table-savings {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .table-savings.positive { color: var(--sage); }
+        .table-savings.negative { color: var(--rose-dark); }
+        .table-savings.neutral { color: var(--text-light); }
 
         /* ==================== Export Section ==================== */
         .export-section {
@@ -1072,33 +1423,41 @@
 
             .summary-bar {
                 top: 140px;
-            }
-
-            .price-inputs {
                 flex-direction: column;
-                align-items: stretch;
+                align-items: center;
             }
 
-            .savings-display {
-                margin-left: 0;
+            .view-toggle {
                 margin-top: 10px;
             }
 
-            .url-row {
-                flex-wrap: wrap;
+            .store-pills-section {
+                justify-content: center;
             }
 
-            .url-input {
-                flex: 1 1 100%;
-                order: 1;
+            .card-savings {
+                margin-left: 0;
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
             }
 
-            .url-row label {
-                order: 0;
+            .table-view {
+                font-size: 0.85em;
             }
 
-            .visit-link, .na-checkbox {
-                order: 2;
+            .table-book-title {
+                max-width: 120px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px 10px;
+            }
+
+            .store-popover {
+                width: 95%;
+                padding: 20px;
             }
         }
     </style>
@@ -1122,7 +1481,7 @@
         <div class="import-screen">
             <div class="import-card">
                 <h2>Welcome! Let's Find Some Deals</h2>
-                <p>Paste your curriculum data below to start comparing book prices across Half Price Books and ThriftBooks.</p>
+                <p>Paste your curriculum data below to start comparing book prices across Half Price Books, ThriftBooks, and Amazon.</p>
 
                 <!-- Tab Selector for Import Method -->
                 <div class="import-tabs">
@@ -1229,18 +1588,66 @@
                     <div class="label">Progress</div>
                     <div class="value" id="progress">0/0</div>
                 </div>
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" data-view="grid" onclick="switchView('grid')">
+                        <i data-lucide="layout-grid"></i>
+                        Cards
+                    </button>
+                    <button class="view-toggle-btn" data-view="table" onclick="switchView('table')">
+                        <i data-lucide="table-2"></i>
+                        Table
+                    </button>
+                </div>
             </div>
 
             <div class="filters" id="filters"></div>
 
             <main>
                 <div class="book-grid" id="bookGrid"></div>
+                <div class="table-view" id="tableView"></div>
 
                 <div class="export-section">
                     <button class="export-btn" onclick="exportToCSV()"><i data-lucide="download" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 8px;"></i>Export to CSV</button>
                     <button class="clear-btn" onclick="clearAllPrices()">Clear Prices</button>
                 </div>
             </main>
+        </div>
+
+        <!-- Store Price Popover -->
+        <div class="popover-overlay" id="storePopover">
+            <div class="store-popover">
+                <div class="popover-header">
+                    <h3 id="popoverTitle">Edit Price</h3>
+                    <button class="popover-close" onclick="closePopover()">
+                        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+                    </button>
+                </div>
+                <div class="popover-body">
+                    <div class="popover-book-title" id="popoverBookTitle" style="font-weight: 600; color: var(--text-dark); margin-bottom: 5px;"></div>
+                    <a class="popover-search-link" id="popoverSearchLink" href="#" target="_blank">
+                        <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                        <span id="popoverSearchText">Search Store</span>
+                    </a>
+                    <div class="popover-field">
+                        <label for="popoverPrice">Price Found</label>
+                        <input type="number" step="0.01" min="0" class="popover-input" id="popoverPrice" placeholder="$0.00">
+                    </div>
+                    <div class="popover-field">
+                        <label for="popoverUrl">Product URL (optional)</label>
+                        <input type="url" class="popover-input" id="popoverUrl" placeholder="Paste link to the book...">
+                    </div>
+                    <div class="popover-na-row">
+                        <label>
+                            <input type="checkbox" id="popoverNA">
+                            Not available at this store
+                        </label>
+                    </div>
+                    <div class="popover-actions">
+                        <button class="popover-btn secondary" onclick="closePopover()">Cancel</button>
+                        <button class="popover-btn primary" onclick="savePopover()">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1249,9 +1656,39 @@
         let currentCurriculumId = null;
         let bookData = [];
         let savedPrices = {};
+        let currentView = 'grid';
+        let popoverState = { sku: null, store: null };
 
         const CURRICULA_KEY = 'sonlight-curricula';
         const PRICES_KEY = 'sonlight-prices';
+
+        // Store configuration
+        const STORES = {
+            hpb: {
+                name: 'Half Price Books',
+                shortName: 'HPB',
+                searchUrl: (title) => `https://www.hpb.com/search?q=${encodeURIComponent(title)}`,
+                priceKey: 'hpb',
+                urlKey: 'hpbUrl',
+                naKey: 'hpbNA'
+            },
+            thrift: {
+                name: 'ThriftBooks',
+                shortName: 'TB',
+                searchUrl: (title) => `https://www.thriftbooks.com/browse/?b.search=${encodeURIComponent(title)}`,
+                priceKey: 'thrift',
+                urlKey: 'thriftUrl',
+                naKey: 'thriftNA'
+            },
+            amazon: {
+                name: 'Amazon',
+                shortName: 'AMZ',
+                searchUrl: (title) => `https://www.amazon.com/s?k=${encodeURIComponent(title)}&i=stripbooks`,
+                priceKey: 'amazon',
+                urlKey: 'amazonUrl',
+                naKey: 'amazonNA'
+            }
+        };
 
         // ==================== Storage Functions ====================
 
@@ -1793,23 +2230,50 @@
 
         // ==================== Comparison Functions ====================
 
-        function getHPBUrl(title) {
-            return `https://www.hpb.com/search?q=${encodeURIComponent(title)}`;
-        }
-
-        function getThriftBooksUrl(title) {
-            return `https://www.thriftbooks.com/browse/?b.search=${encodeURIComponent(title)}`;
-        }
-
         function getBestPrice(sku) {
             const prices = savedPrices[sku] || {};
-            const hpb = parseFloat(prices.hpb) || null;
-            const thrift = parseFloat(prices.thrift) || null;
+            const storePrices = Object.keys(STORES).map(storeKey => {
+                const store = STORES[storeKey];
+                if (prices[store.naKey]) return null;
+                return parseFloat(prices[store.priceKey]) || null;
+            }).filter(p => p !== null);
 
-            if (hpb === null && thrift === null) return null;
-            if (hpb === null) return thrift;
-            if (thrift === null) return hpb;
-            return Math.min(hpb, thrift);
+            if (storePrices.length === 0) return null;
+            return Math.min(...storePrices);
+        }
+
+        function getBestStore(sku) {
+            const prices = savedPrices[sku] || {};
+            const bestPrice = getBestPrice(sku);
+            if (bestPrice === null) return null;
+
+            for (const storeKey of Object.keys(STORES)) {
+                const store = STORES[storeKey];
+                if (!prices[store.naKey] && parseFloat(prices[store.priceKey]) === bestPrice) {
+                    return storeKey;
+                }
+            }
+            return null;
+        }
+
+        function renderStorePill(book, storeKey) {
+            const store = STORES[storeKey];
+            const prices = savedPrices[book.sku] || {};
+            const price = prices[store.priceKey];
+            const isNA = prices[store.naKey] || false;
+            const bestStore = getBestStore(book.sku);
+            const isBest = bestStore === storeKey && price;
+
+            const priceText = isNA ? 'N/A' : (price ? `$${Math.round(parseFloat(price))}` : '—');
+
+            return `
+                <button class="store-pill ${storeKey} ${isNA ? 'na' : ''} ${isBest ? 'best-price' : ''}"
+                        onclick="openPopover('${book.sku}', '${storeKey}')"
+                        title="${store.name}">
+                    <span class="pill-label">${store.shortName}</span>
+                    <span class="pill-price">${priceText}</span>
+                </button>
+            `;
         }
 
         function renderBookCard(book, index) {
@@ -1818,11 +2282,11 @@
             const sonlightPrice = parseFloat(book.price) || 0;
             const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
             const hasSavings = savings !== null && savings > 0;
-            const hpbNA = prices.hpbNA || false;
-            const thriftNA = prices.thriftNA || false;
+
+            const storePills = Object.keys(STORES).map(storeKey => renderStorePill(book, storeKey)).join('');
 
             return `
-                <div class="book-card ${hasSavings ? 'has-savings' : ''} ${hpbNA ? 'hpb-na' : ''} ${thriftNA ? 'thrift-na' : ''}"
+                <div class="book-card ${hasSavings ? 'has-savings' : ''}"
                      data-sku="${book.sku}" data-category="${book.group}"
                      style="animation-delay: ${index * 0.05}s">
                     <div class="book-card-inner">
@@ -1837,161 +2301,233 @@
                             <div class="book-meta">
                                 <span class="book-sku">${book.sku}</span>
                                 <span class="book-category">${book.group}</span>
-                                ${hpbNA ? '<span class="na-badge">HPB N/A</span>' : ''}
-                                ${thriftNA ? '<span class="na-badge">Thrift N/A</span>' : ''}
                             </div>
                             <div class="sonlight-price">$${sonlightPrice.toFixed(2)}</div>
-                            <div class="search-links">
-                                <a class="search-link hpb" href="${getHPBUrl(book.title)}" target="_blank">Search HPB</a>
-                                <a class="search-link thriftbooks" href="${getThriftBooksUrl(book.title)}" target="_blank">ThriftBooks</a>
-                            </div>
                         </div>
                     </div>
-                    <div class="price-inputs">
-                        <div class="price-input-group">
-                            <label>HPB</label>
-                            <input type="number" step="0.01" min="0" class="price-input hpb-input"
-                                   data-sku="${book.sku}" data-store="hpb"
-                                   value="${prices.hpb || ''}"
-                                   placeholder="$0.00"
-                                   ${hpbNA ? 'disabled' : ''}
-                                   onchange="updatePrice('${book.sku}', 'hpb', this.value)">
-                        </div>
-                        <div class="price-input-group">
-                            <label>Thrift</label>
-                            <input type="number" step="0.01" min="0" class="price-input thrift-input"
-                                   data-sku="${book.sku}" data-store="thrift"
-                                   value="${prices.thrift || ''}"
-                                   placeholder="$0.00"
-                                   ${thriftNA ? 'disabled' : ''}
-                                   onchange="updatePrice('${book.sku}', 'thrift', this.value)">
-                        </div>
-                        <div class="savings-display">
+                    <div class="store-pills-section">
+                        ${storePills}
+                        <div class="card-savings">
                             <div class="label">Savings</div>
                             <div class="amount ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}">
                                 ${savings === null ? '—' : (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2)}
                             </div>
                         </div>
                     </div>
-                    <div class="url-section">
-                        <div class="url-row">
-                            <label>HPB:</label>
-                            <input type="url" class="url-input hpb-url"
-                                   placeholder="Paste HPB link here..."
-                                   value="${prices.hpbUrl || ''}"
-                                   ${hpbNA ? 'disabled' : ''}
-                                   onchange="updateUrl('${book.sku}', 'hpbUrl', this.value)">
-                            <a class="visit-link ${prices.hpbUrl ? '' : 'disabled'}"
-                               href="${prices.hpbUrl || '#'}"
-                               target="_blank"
-                               data-sku="${book.sku}" data-store="hpb">Visit</a>
-                            <label class="na-checkbox">
-                                <input type="checkbox" ${hpbNA ? 'checked' : ''}
-                                       onchange="toggleNA('${book.sku}', 'hpbNA', this.checked)">
-                                N/A
-                            </label>
-                        </div>
-                        <div class="url-row">
-                            <label>Thrift:</label>
-                            <input type="url" class="url-input thrift-url"
-                                   placeholder="Paste ThriftBooks link here..."
-                                   value="${prices.thriftUrl || ''}"
-                                   ${thriftNA ? 'disabled' : ''}
-                                   onchange="updateUrl('${book.sku}', 'thriftUrl', this.value)">
-                            <a class="visit-link ${prices.thriftUrl ? '' : 'disabled'}"
-                               href="${prices.thriftUrl || '#'}"
-                               target="_blank"
-                               data-sku="${book.sku}" data-store="thrift">Visit</a>
-                            <label class="na-checkbox">
-                                <input type="checkbox" ${thriftNA ? 'checked' : ''}
-                                       onchange="toggleNA('${book.sku}', 'thriftNA', this.checked)">
-                                N/A
-                            </label>
-                        </div>
-                    </div>
                 </div>
             `;
         }
 
-        function updatePrice(sku, store, value) {
-            if (!savedPrices[sku]) savedPrices[sku] = {};
+        // ==================== Table View ====================
 
-            if (value === '' || value === null) {
-                delete savedPrices[sku][store];
-            } else {
-                savedPrices[sku][store] = parseFloat(value);
-            }
+        function renderTableRow(book) {
+            const prices = savedPrices[book.sku] || {};
+            const bestPrice = getBestPrice(book.sku);
+            const bestStore = getBestStore(book.sku);
+            const sonlightPrice = parseFloat(book.price) || 0;
+            const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
+            const hasSavings = savings !== null && savings > 0;
 
-            saveCurrentPrices(savedPrices);
-            updateSummary();
-            updateCardSavings(sku);
+            const storeCells = Object.keys(STORES).map(storeKey => {
+                const store = STORES[storeKey];
+                const price = prices[store.priceKey];
+                const isNA = prices[store.naKey] || false;
+                const isBest = bestStore === storeKey && price;
+
+                const displayText = isNA ? 'N/A' : (price ? `$${parseFloat(price).toFixed(2)}` : 'Add');
+                const classes = [
+                    'table-price-btn',
+                    storeKey,
+                    isNA ? 'na' : '',
+                    price ? 'has-price' : '',
+                    isBest ? 'best-price' : ''
+                ].filter(Boolean).join(' ');
+
+                return `
+                    <td class="table-store-cell">
+                        <button class="${classes}" onclick="openPopover('${book.sku}', '${storeKey}')">
+                            ${displayText}
+                        </button>
+                    </td>
+                `;
+            }).join('');
+
+            return `
+                <tr class="${hasSavings ? 'has-savings' : ''}" data-sku="${book.sku}" data-category="${book.group}">
+                    <td>
+                        <div class="table-book-info">
+                            <img class="table-book-image" src="${book.imageUrl || ''}" alt="${book.title}" loading="lazy"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 55%22><rect fill=%22%23F5EDE4%22 width=%2240%22 height=%2255%22/></svg>'">
+                            <div class="table-book-details">
+                                <div class="table-book-title">
+                                    <a href="${book.productUrl}" target="_blank" title="${book.title}">${book.title}</a>
+                                </div>
+                                <div class="table-book-meta">${book.sku} · ${book.group}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table-sonlight-price">$${sonlightPrice.toFixed(2)}</td>
+                    ${storeCells}
+                    <td class="table-best-price">${bestPrice !== null ? '$' + bestPrice.toFixed(2) : '—'}</td>
+                    <td class="table-savings ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}">
+                        ${savings === null ? '—' : (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2)}
+                    </td>
+                </tr>
+            `;
         }
 
-        function updateUrl(sku, field, value) {
-            if (!savedPrices[sku]) savedPrices[sku] = {};
+        function renderTableView() {
+            const storeHeaders = Object.keys(STORES).map(storeKey => {
+                const store = STORES[storeKey];
+                return `<th class="store-col ${storeKey}">${store.shortName}</th>`;
+            }).join('');
 
-            if (value === '' || value === null) {
-                delete savedPrices[sku][field];
+            const rows = bookData.map(book => renderTableRow(book)).join('');
+
+            return `
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Sonlight</th>
+                            ${storeHeaders}
+                            <th>Best</th>
+                            <th>Savings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // ==================== View Switching ====================
+
+        function switchView(view) {
+            currentView = view;
+
+            document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.view === view);
+            });
+
+            const grid = document.getElementById('bookGrid');
+            const table = document.getElementById('tableView');
+
+            if (view === 'grid') {
+                grid.classList.remove('hidden');
+                table.classList.remove('active');
             } else {
-                savedPrices[sku][field] = value;
+                grid.classList.add('hidden');
+                table.classList.add('active');
+                table.innerHTML = renderTableView();
             }
 
-            saveCurrentPrices(savedPrices);
-
-            const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
-            if (card) {
-                const store = field === 'hpbUrl' ? 'hpb' : 'thrift';
-                const visitLink = card.querySelector(`.visit-link[data-store="${store}"]`);
-                if (visitLink) {
-                    visitLink.href = value || '#';
-                    visitLink.classList.toggle('disabled', !value);
-                }
+            // Reapply filter
+            const activeFilter = document.querySelector('.filter-btn.active');
+            if (activeFilter) {
+                filterBooks(activeFilter.dataset.filter);
             }
         }
 
-        function toggleNA(sku, field, checked) {
+        // ==================== Popover Functions ====================
+
+        function openPopover(sku, storeKey) {
+            const book = bookData.find(b => b.sku === sku);
+            const store = STORES[storeKey];
+            const prices = savedPrices[sku] || {};
+
+            popoverState = { sku, store: storeKey };
+
+            document.getElementById('popoverTitle').textContent = `${store.name} Price`;
+            document.getElementById('popoverBookTitle').textContent = book.title;
+            document.getElementById('popoverSearchLink').href = store.searchUrl(book.title);
+            document.getElementById('popoverSearchText').textContent = `Search ${store.shortName}`;
+            document.getElementById('popoverPrice').value = prices[store.priceKey] || '';
+            document.getElementById('popoverUrl').value = prices[store.urlKey] || '';
+            document.getElementById('popoverNA').checked = prices[store.naKey] || false;
+
+            document.getElementById('storePopover').classList.add('active');
+            document.getElementById('popoverPrice').focus();
+
+            lucide.createIcons();
+        }
+
+        function closePopover() {
+            document.getElementById('storePopover').classList.remove('active');
+            popoverState = { sku: null, store: null };
+        }
+
+        function savePopover() {
+            const { sku, store: storeKey } = popoverState;
+            if (!sku || !storeKey) return;
+
+            const store = STORES[storeKey];
+            const priceValue = document.getElementById('popoverPrice').value;
+            const urlValue = document.getElementById('popoverUrl').value;
+            const naValue = document.getElementById('popoverNA').checked;
+
             if (!savedPrices[sku]) savedPrices[sku] = {};
 
-            savedPrices[sku][field] = checked;
+            // Handle N/A
+            if (naValue) {
+                savedPrices[sku][store.naKey] = true;
+                delete savedPrices[sku][store.priceKey];
+                delete savedPrices[sku][store.urlKey];
+            } else {
+                delete savedPrices[sku][store.naKey];
 
-            if (checked) {
-                if (field === 'hpbNA') {
-                    delete savedPrices[sku].hpb;
-                    delete savedPrices[sku].hpbUrl;
+                // Handle price
+                if (priceValue === '' || priceValue === null) {
+                    delete savedPrices[sku][store.priceKey];
                 } else {
-                    delete savedPrices[sku].thrift;
-                    delete savedPrices[sku].thriftUrl;
+                    savedPrices[sku][store.priceKey] = parseFloat(priceValue);
+                }
+
+                // Handle URL
+                if (urlValue === '' || urlValue === null) {
+                    delete savedPrices[sku][store.urlKey];
+                } else {
+                    savedPrices[sku][store.urlKey] = urlValue;
                 }
             }
 
             saveCurrentPrices(savedPrices);
-            updateSummary();
+            closePopover();
 
+            // Update both views
+            refreshBookDisplay(sku);
+            updateSummary();
+        }
+
+        function refreshBookDisplay(sku) {
+            // Update card view
             const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
             if (card) {
                 const book = bookData.find(b => b.sku === sku);
-                const index = bookData.indexOf(book);
                 const newCard = document.createElement('div');
                 newCard.innerHTML = renderBookCard(book, 0);
                 card.replaceWith(newCard.firstElementChild);
             }
-        }
 
-        function updateCardSavings(sku) {
-            const card = document.querySelector(`.book-card[data-sku="${sku}"]`);
-            if (card) {
+            // Update table view
+            const row = document.querySelector(`.comparison-table tr[data-sku="${sku}"]`);
+            if (row) {
                 const book = bookData.find(b => b.sku === sku);
-                const bestPrice = getBestPrice(sku);
-                const sonlightPrice = parseFloat(book.price) || 0;
-                const savings = bestPrice !== null ? (sonlightPrice - bestPrice) : null;
-
-                const savingsEl = card.querySelector('.savings-display .amount');
-                savingsEl.className = `amount ${savings === null ? 'neutral' : (savings >= 0 ? 'positive' : 'negative')}`;
-                savingsEl.textContent = savings === null ? '—' : (savings >= 0 ? '+$' : '-$') + Math.abs(savings).toFixed(2);
-
-                card.classList.toggle('has-savings', savings !== null && savings > 0);
+                const newRow = document.createElement('tbody');
+                newRow.innerHTML = renderTableRow(book);
+                row.replaceWith(newRow.firstElementChild);
             }
         }
+
+        // Close popover on escape key or clicking outside
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePopover();
+        });
+
+        document.getElementById('storePopover').addEventListener('click', (e) => {
+            if (e.target.classList.contains('popover-overlay')) closePopover();
+        });
 
         function updateSummary() {
             let totalSonlight = 0;
@@ -2044,11 +2580,21 @@
         }
 
         function filterBooks(filter) {
+            // Filter cards
             document.querySelectorAll('.book-card').forEach(card => {
                 if (filter === 'all' || card.dataset.category === filter) {
                     card.classList.remove('hidden');
                 } else {
                     card.classList.add('hidden');
+                }
+            });
+
+            // Filter table rows
+            document.querySelectorAll('.comparison-table tbody tr').forEach(row => {
+                if (filter === 'all' || row.dataset.category === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
                 }
             });
         }
@@ -2063,31 +2609,36 @@
             const curriculum = curricula[currentCurriculumId];
             const name = curriculum?.name || 'curriculum';
 
-            const headers = ['SKU', 'Title', 'Category', 'Sonlight Price', 'HPB Price', 'HPB URL', 'HPB N/A', 'ThriftBooks Price', 'ThriftBooks URL', 'Thrift N/A', 'Best Price', 'Savings', 'Sonlight URL'];
+            // Build headers dynamically based on stores
+            const storeHeaders = Object.keys(STORES).flatMap(storeKey => {
+                const store = STORES[storeKey];
+                return [`${store.shortName} Price`, `${store.shortName} URL`, `${store.shortName} N/A`];
+            });
+
+            const headers = ['SKU', 'Title', 'Category', 'Sonlight Price', ...storeHeaders, 'Best Price', 'Savings', 'Sonlight URL'];
 
             const rows = bookData.map(book => {
                 const prices = savedPrices[book.sku] || {};
-                const hpbPrice = prices.hpb || '';
-                const hpbUrl = prices.hpbUrl || '';
-                const hpbNA = prices.hpbNA ? 'Yes' : '';
-                const thriftPrice = prices.thrift || '';
-                const thriftUrl = prices.thriftUrl || '';
-                const thriftNA = prices.thriftNA ? 'Yes' : '';
                 const bestPrice = getBestPrice(book.sku);
                 const sonlightPrice = parseFloat(book.price) || 0;
                 const savings = bestPrice !== null ? (sonlightPrice - bestPrice).toFixed(2) : '';
+
+                // Build store columns dynamically
+                const storeColumns = Object.keys(STORES).flatMap(storeKey => {
+                    const store = STORES[storeKey];
+                    return [
+                        prices[store.priceKey] || '',
+                        `"${prices[store.urlKey] || ''}"`,
+                        prices[store.naKey] ? 'Yes' : ''
+                    ];
+                });
 
                 return [
                     book.sku,
                     `"${(book.title || '').replace(/"/g, '""')}"`,
                     book.group,
                     sonlightPrice.toFixed(2),
-                    hpbPrice,
-                    `"${hpbUrl}"`,
-                    hpbNA,
-                    thriftPrice,
-                    `"${thriftUrl}"`,
-                    thriftNA,
+                    ...storeColumns,
                     bestPrice !== null ? bestPrice.toFixed(2) : '',
                     savings,
                     book.productUrl || ''
@@ -2111,6 +2662,10 @@
                 savedPrices = {};
                 saveCurrentPrices(savedPrices);
                 renderBooks();
+                // Also update table view if it's active
+                if (currentView === 'table') {
+                    document.getElementById('tableView').innerHTML = renderTableView();
+                }
                 updateSummary();
             }
         }
